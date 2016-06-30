@@ -1,0 +1,6 @@
+{
+  "extends": ["frost-standard"],
+  "globals": {
+    "URL": false
+  }
+}
