@@ -1,7 +1,7 @@
 module.exports = {
   afterInstall: function () {
     return this.addPackagesToProject([
-      {name: 'dagre'}
+      {name: 'dagre', target: 'sandersky/dagre'}
     ])
       .then(() => {
         return this.addAddonsToProject({
