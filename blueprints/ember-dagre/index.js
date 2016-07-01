@@ -4,7 +4,8 @@ module.exports = {
       packages: [
         {name: 'ember-graphlib', target: '>=0.0.1 <2.0.0'},
         {name: 'ember-lodash', target: '>=0.0.9 <2.0.0'}
-      })
+      ]
+    })
   },
 
   normalizeEntityName: function () {
