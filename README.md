@@ -1,4 +1,6 @@
-# Ember-dagre
+# ember-dagre
+
+[![Travis][ci-img]][ci-url] [![Coveralls][cov-img]][cov-url] [![NPM][npm-img]][npm-url]
 
 This README outlines the details of collaborating on this Ember addon.
 
@@ -24,3 +26,10 @@ This README outlines the details of collaborating on this Ember addon.
 * `ember build`
 
 For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+
+[ci-img]: https://img.shields.io/travis/ciena-blueplanet/ember-dagre.svg "Travis CI Build Status"
+[ci-url]: https://travis-ci.org/ciena-blueplanet/ember-dagre
+[cov-img]: https://img.shields.io/coveralls/ciena-blueplanet/ember-dagre.svg "Coveralls Code Coverage"
+[cov-url]: https://coveralls.io/github/ciena-blueplanet/ember-dagre
+[npm-img]: https://img.shields.io/npm/v/ember-dagre.svg "NPM Version"
+[npm-url]: https://www.npmjs.com/package/ember-dagre
