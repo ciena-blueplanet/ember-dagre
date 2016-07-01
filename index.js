@@ -1,5 +1,6 @@
 'use strict'
 
+const Funnel = require('broccoli-funnel')
 const mergeTrees = require('broccoli-merge-trees')
 const path = require('path')
 
@@ -8,8 +9,19 @@ module.exports = {
 
   treeForAddon (tree) {
     const dagrePath = path.dirname(require.resolve('dagre/index.js'))
-    const dagreTree = this.treeGenerator(dagrePath)
-    const trees = mergeTrees([dagreTree, tree], {
+
+    const dagreFunnel = new Funnel(dagrePath, {
+      include: [
+        'lib/**/*.js',
+        'index.js'
+      ]
+    })
+
+    if (!tree) {
+      return this._super.treeForAddon.call(this, dagreFunnel)
+    }
+
+    const trees = mergeTrees([dagreFunnel, tree], {
       overwrite: true
     })
 
