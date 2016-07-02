@@ -9,7 +9,7 @@
   "scripts": {
     "build": "ember build",
     "lint": "npm run lint-js",
-    "lint-js": "eslint addon app config tests *.js",
+    "lint-js": "eslint addon app blueprints config tests *.js",
     "start": "ember server",
     "test": "npm run lint && ember test"
   },
@@ -34,7 +34,7 @@
     "ember-cli-uglify": "^1.2.0",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
-    "ember-graphlib": "0.0.4",
+    "ember-graphlib": "0.0.5",
     "ember-load-initializers": "^0.5.1",
     "ember-lodash": "0.0.9",
     "ember-resolver": "^2.0.3",
