@@ -46,7 +46,7 @@
     "ember-addon"
   ],
   "dependencies": {
-    "dagre": "https://github.com/ciena-blueplanet/dagre/archive/v0.7.5-pre.tar.gz",
+    "dagre": "https://github.com/ciena-blueplanet/dagre/archive/v0.7.5-pre.1.tar.gz",
     "ember-cli-babel": "^5.1.6"
   },
   "ember-addon": {
