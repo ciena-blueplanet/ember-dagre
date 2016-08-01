@@ -24,7 +24,7 @@
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.2",
-    "ember-cli": "2.6.2",
+    "ember-cli": "2.7.0",
     "ember-cli-app-version": "^1.0.0",
     "ember-cli-dependency-checker": "^1.2.0",
     "ember-cli-htmlbars": "^1.0.3",
@@ -36,10 +36,10 @@
     "ember-export-application-global": "^1.0.5",
     "ember-graphlib": "0.0.5",
     "ember-load-initializers": "^0.5.1",
-    "ember-lodash": "0.0.9",
+    "ember-lodash": "0.0.10",
     "ember-resolver": "^2.0.3",
-    "eslint": "^2.13.1",
-    "eslint-config-frost-standard": "^2.0.0",
+    "eslint": "^3.2.2",
+    "eslint-config-frost-standard": "^3.0.0",
     "loader.js": "^4.0.1"
   },
   "keywords": [
