@@ -1,3 +1,7 @@
+# 0.1.7
+No CHANGELOG section found in Pull Request description.
+Use a `# CHANGELOG` section in your Pull Request description to auto-populate the `CHANGELOG.md`
+
 # 0.1.6
 
 * **Upgrade** to latest `dagre` which fixes a couple bugs with Lodash 4.
