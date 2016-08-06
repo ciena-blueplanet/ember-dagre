@@ -1,3 +1,7 @@
+# 0.1.6
+
+* **Upgrade** to latest `dagre` which fixes a couple bugs with Lodash 4.
+
 # 0.1.5
 
 * **Upgraded** `dagre` to version that works with `lodash` version 4.x.
