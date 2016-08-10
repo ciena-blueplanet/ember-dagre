@@ -1,3 +1,7 @@
+# 0.1.23
+
+* **Added** missing dependencies `broccoli-funnel` and `broccoli-merge-trees`.
+
 # 0.1.22
 No CHANGELOG section found in Pull Request description.
 Use a `# CHANGELOG` section in your Pull Request description to auto-populate the `CHANGELOG.md`
