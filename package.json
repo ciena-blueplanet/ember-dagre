@@ -1,6 +1,6 @@
 {
   "name": "ember-dagre",
-  "version": "0.1.32",
+  "version": "0.1.33",
   "description": "The default blueprint for ember-cli addons.",
   "directories": {
     "doc": "doc",
