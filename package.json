@@ -35,17 +35,20 @@
     "ember-cli-uglify": "^1.2.0",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
-    "ember-graphlib": "0.1.14",
+    "ember-graphlib": "^1.0.0",
     "ember-load-initializers": "^0.5.1",
-    "ember-lodash-shim": "0.1.11",
+    "ember-lodash-shim": "^1.0.0",
     "ember-resolver": "^2.0.3",
     "eslint": "^3.2.2",
     "eslint-config-frost-standard": "^3.0.0",
     "loader.js": "^4.0.1",
-    "lodash-es": "4.14.2"
+    "lodash-es": "4.15.0"
   },
   "keywords": [
-    "ember-addon"
+    "directed",
+    "ember-addon",
+    "graph",
+    "renderer"
   ],
   "dependencies": {
     "broccoli-funnel": "^1.0.6",
