@@ -37,7 +37,7 @@
     "ember-export-application-global": "^1.0.5",
     "ember-graphlib": "^1.0.0",
     "ember-load-initializers": "^0.5.1",
-    "ember-lodash-shim": "^1.0.0",
+    "ember-lodash-shim": "^1.0.1",
     "ember-resolver": "^2.0.3",
     "eslint": "^3.2.2",
     "eslint-config-frost-standard": "^3.0.0",
