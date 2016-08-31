@@ -1,3 +1,7 @@
+# 1.0.0
+
+* **Updated** dependencies to latest versions.
+
 # 0.1.35
 No CHANGELOG section found in Pull Request description.
 Use a `# CHANGELOG` section in your Pull Request description to auto-populate the `CHANGELOG.md`
