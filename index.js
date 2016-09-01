@@ -5,15 +5,14 @@ const mergeTrees = require('broccoli-merge-trees')
 const path = require('path')
 
 module.exports = {
-  name: 'dagre',
+  name: 'ciena-dagre',
 
   treeForAddon (tree) {
-    const dagrePath = path.dirname(require.resolve('dagre/index.js'))
+    const dagrePath = path.dirname(require.resolve('ciena-dagre/src/index.js'))
 
     const dagreFunnel = new Funnel(dagrePath, {
       include: [
-        'lib/**/*.js',
-        'index.js'
+        '**/*.js'
       ]
     })
 
