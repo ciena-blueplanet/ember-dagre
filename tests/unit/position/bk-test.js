@@ -503,7 +503,7 @@ describe('position/bk', function () {
   })
 
   describe('alignCoordinates', function () {
-    it.skip('aligns a single node', function () {
+    it('aligns a single node', function () {
       var xss = {
         ul: { a: 50 },
         ur: { a: 100 },
@@ -519,7 +519,7 @@ describe('position/bk', function () {
       expect(xss.dr).to.eql({ a: 50 })
     })
 
-    it.skip('aligns multiple nodes', function () {
+    it('aligns multiple nodes', function () {
       var xss = {
         ul: { a: 50, b: 1000 },
         ur: { a: 100, b: 900 },
@@ -537,7 +537,7 @@ describe('position/bk', function () {
   })
 
   describe('findSmallestWidthAlignment', function () {
-    it.skip('finds the alignment with the smallest width', function () {
+    it('finds the alignment with the smallest width', function () {
       g.setNode('a', { width: 50 })
       g.setNode('b', { width: 50 })
 
@@ -551,7 +551,7 @@ describe('position/bk', function () {
       expect(findSmallestWidthAlignment(g, xss)).to.eql(xss.dr)
     })
 
-    it.skip('takes node width into account', function () {
+    it('takes node width into account', function () {
       g.setNode('a', { width: 50 })
       g.setNode('b', { width: 50 })
       g.setNode('c', { width: 200 })

@@ -3,13 +3,12 @@ import dagre from 'ciena-dagre'
 import graphlib from 'ciena-graphlib'
 import {describe, it} from 'mocha'
 
-describe.skip('index', function () {
+describe('index', function () {
   it('exports dagre', function () {
     expect(dagre).to.be.an('object')
     expect(dagre.graphlib).to.be.an('object')
     expect(dagre.layout).to.be.a('function')
     expect(dagre.util).to.be.an('object')
-    expect(dagre.version).to.be.a('string')
   })
 
   it('can do trivial layout', function () {

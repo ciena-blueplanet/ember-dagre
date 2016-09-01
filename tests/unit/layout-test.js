@@ -204,7 +204,7 @@ describe('layout', function () {
     layout(g)
   })
 
-  it.skip('minimizes the height of subgraphs', function () {
+  it('minimizes the height of subgraphs', function () {
     _.forEach(['a', 'b', 'c', 'd', 'x', 'y'], function (v) {
       g.setNode(v, { width: 50, height: 50 })
     })
