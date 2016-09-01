@@ -1,6 +1,6 @@
 import {expect} from 'chai'
-import addSubgraphConstraints from 'dagre/order/add-subgraph-constraints'
-import {Graph} from 'graphlib'
+import addSubgraphConstraints from 'ciena-dagre/order/add-subgraph-constraints'
+import {Graph} from 'ciena-graphlib'
 import _ from 'lodash'
 import {beforeEach, describe, it} from 'mocha'
 

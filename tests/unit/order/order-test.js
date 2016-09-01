@@ -1,8 +1,8 @@
 import {expect} from 'chai'
-import order from 'dagre/order'
-import crossCount from 'dagre/order/cross-count'
-import {buildLayerMatrix} from 'dagre/util'
-import {Graph} from 'graphlib'
+import order from 'ciena-dagre/order'
+import crossCount from 'ciena-dagre/order/cross-count'
+import {buildLayerMatrix} from 'ciena-dagre/util'
+import {Graph} from 'ciena-graphlib'
 import _ from 'lodash'
 import {beforeEach, describe, it} from 'mocha'
 

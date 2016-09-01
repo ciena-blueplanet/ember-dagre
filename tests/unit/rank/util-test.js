@@ -1,7 +1,7 @@
 import {expect} from 'chai'
-import {longestPath} from 'dagre/rank/util'
-import {normalizeRanks} from 'dagre/util'
-import {Graph} from 'graphlib'
+import {longestPath} from 'ciena-dagre/rank/util'
+import {normalizeRanks} from 'ciena-dagre/util'
+import {Graph} from 'ciena-graphlib'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('rank/util', function () {

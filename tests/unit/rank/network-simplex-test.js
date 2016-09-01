@@ -1,17 +1,19 @@
 import {expect} from 'chai'
 
-import networkSimplex, {
+import networkSimplex from 'ciena-dagre/rank/network-simplex'
+
+const {
   calcCutValue,
   enterEdge,
   exchangeEdges,
   initCutValues,
   initLowLimValues,
   leaveEdge
-} from 'dagre/rank/network-simplex'
+} = networkSimplex
 
-import {longestPath} from 'dagre/rank/util'
-import {normalizeRanks} from 'dagre/util'
-import {Graph} from 'graphlib'
+import {longestPath} from 'ciena-dagre/rank/util'
+import {normalizeRanks} from 'ciena-dagre/util'
+import {Graph} from 'ciena-graphlib'
 import _ from 'lodash'
 import {beforeEach, describe, it} from 'mocha'
 

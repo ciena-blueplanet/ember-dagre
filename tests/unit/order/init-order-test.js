@@ -1,6 +1,6 @@
 import {expect} from 'chai'
-import initOrder from 'dagre/order/init-order'
-import {Graph} from 'graphlib'
+import initOrder from 'ciena-dagre/order/init-order'
+import {Graph} from 'ciena-graphlib'
 import _ from 'lodash'
 import {beforeEach, describe, it} from 'mocha'
 

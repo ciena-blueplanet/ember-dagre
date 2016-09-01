@@ -1,6 +1,6 @@
 import {expect} from 'chai'
-import coordinateSystem from 'dagre/coordinate-system'
-import {Graph} from 'graphlib'
+import coordinateSystem from 'ciena-dagre/coordinate-system'
+import {Graph} from 'ciena-graphlib'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('coordinateSystem', function () {

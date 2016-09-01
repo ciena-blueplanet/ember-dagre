@@ -1,6 +1,6 @@
 import {expect} from 'chai'
-import crossCount from 'dagre/order/cross-count'
-import {Graph} from 'graphlib'
+import crossCount from 'ciena-dagre/order/cross-count'
+import {Graph} from 'ciena-graphlib'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('crossCount', function () {

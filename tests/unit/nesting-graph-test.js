@@ -1,6 +1,6 @@
 import {expect} from 'chai'
-import nestingGraph from 'dagre/nesting-graph'
-import {alg, Graph} from 'graphlib'
+import nestingGraph from 'ciena-dagre/nesting-graph'
+import {alg, Graph} from 'ciena-graphlib'
 const {components} = alg
 import {beforeEach, describe, it} from 'mocha'
 

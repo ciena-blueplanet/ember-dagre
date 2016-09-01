@@ -1,6 +1,6 @@
 import {expect} from 'chai'
-import normalize from 'dagre/normalize'
-import {Graph} from 'graphlib'
+import normalize from 'ciena-dagre/normalize'
+import {Graph} from 'ciena-graphlib'
 import _ from 'lodash'
 import {beforeEach, describe, it} from 'mocha'
 

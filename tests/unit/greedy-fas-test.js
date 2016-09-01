@@ -1,6 +1,6 @@
 import {expect} from 'chai'
-import greedyFAS from 'dagre/greedy-fas'
-import {alg, Graph} from 'graphlib'
+import greedyFAS from 'ciena-dagre/greedy-fas'
+import {alg, Graph} from 'ciena-graphlib'
 const {findCycles} = alg
 import _ from 'lodash'
 import {beforeEach, describe, it} from 'mocha'

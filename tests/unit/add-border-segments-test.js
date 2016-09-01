@@ -1,6 +1,6 @@
 import {expect} from 'chai'
-import addBorderSegments from 'dagre/add-border-segments'
-import {Graph} from 'graphlib'
+import addBorderSegments from 'ciena-dagre/add-border-segments'
+import {Graph} from 'ciena-graphlib'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('addBorderSegments', function () {

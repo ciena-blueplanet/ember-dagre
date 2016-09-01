@@ -1,6 +1,6 @@
 import {expect} from 'chai'
-import buildLayerGraph from 'dagre/order/build-layer-graph'
-import {Graph} from 'graphlib'
+import buildLayerGraph from 'ciena-dagre/order/build-layer-graph'
+import {Graph} from 'ciena-graphlib'
 import _ from 'lodash'
 import {beforeEach, describe, it} from 'mocha'
 

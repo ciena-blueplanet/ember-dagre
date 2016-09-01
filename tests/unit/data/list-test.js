@@ -1,5 +1,5 @@
 import {expect} from 'chai'
-import List from 'dagre/data/list'
+import List from 'ciena-dagre/data/list'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('data.List', function () {

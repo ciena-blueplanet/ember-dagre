@@ -1,9 +1,9 @@
 import {expect} from 'chai'
-import dagre from 'dagre'
-import graphlib from 'graphlib'
+import dagre from 'ciena-dagre'
+import graphlib from 'ciena-graphlib'
 import {describe, it} from 'mocha'
 
-describe('bundle', function () {
+describe.skip('index', function () {
   it('exports dagre', function () {
     expect(dagre).to.be.an('object')
     expect(dagre.graphlib).to.be.an('object')

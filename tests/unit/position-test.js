@@ -1,6 +1,6 @@
 import {expect} from 'chai'
-import position from 'dagre/position'
-import {Graph} from 'graphlib'
+import position from 'ciena-dagre/position'
+import {Graph} from 'ciena-graphlib'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('position', function () {

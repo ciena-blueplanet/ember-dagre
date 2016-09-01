@@ -1,6 +1,6 @@
 import {expect} from 'chai'
-import resolveConflicts from 'dagre/order/resolve-conflicts'
-import {Graph} from 'graphlib'
+import resolveConflicts from 'ciena-dagre/order/resolve-conflicts'
+import {Graph} from 'ciena-graphlib'
 import _ from 'lodash'
 import {beforeEach, describe, it} from 'mocha'
 

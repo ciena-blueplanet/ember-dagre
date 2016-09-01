@@ -1,6 +1,6 @@
 import {expect} from 'chai'
-import acyclic from 'dagre/acyclic'
-import {alg, Graph} from 'graphlib'
+import acyclic from 'ciena-dagre/acyclic'
+import {alg, Graph} from 'ciena-graphlib'
 const {findCycles} = alg
 import _ from 'lodash'
 import {beforeEach, describe, it} from 'mocha'
@@ -30,7 +30,7 @@ describe('acyclic', function () {
           g.setPath(['a', 'c', 'd'])
           acyclic.run(g)
           var results = _.map(g.edges(), stripLabel)
-          expect(_.sortByAll(results, ['v', 'w'])).to.eql([
+          expect(_.sortBy(results, ['v', 'w'])).to.eql([
             { v: 'a', w: 'b' },
             { v: 'a', w: 'c' },
             { v: 'b', w: 'd' },

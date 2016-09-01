@@ -24,6 +24,7 @@
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.6",
+    "ciena-dagre": "^1.0.0",
     "ember-cli": "2.7.0",
     "ember-cli-app-version": "^2.0.0",
     "ember-cli-dependency-checker": "^1.2.0",
@@ -35,12 +36,12 @@
     "ember-cli-uglify": "^1.2.0",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
-    "ember-graphlib": "^1.0.0",
+    "ember-graphlib": "^2.0.0",
     "ember-load-initializers": "^0.5.1",
     "ember-lodash-shim": "^1.0.0",
     "ember-resolver": "^2.0.3",
-    "eslint": "^3.2.2",
-    "eslint-config-frost-standard": "^3.0.0",
+    "eslint": "^3.4.0",
+    "eslint-config-frost-standard": "^4.0.0",
     "loader.js": "^4.0.1",
     "lodash-es": "4.15.0"
   },
@@ -53,7 +54,6 @@
   "dependencies": {
     "broccoli-funnel": "^1.0.6",
     "broccoli-merge-trees": "^1.1.4",
-    "dagre": "https://github.com/ciena-blueplanet/dagre/archive/v0.7.5-pre.3.tar.gz",
     "ember-cli-babel": "^5.1.9"
   },
   "ember-addon": {

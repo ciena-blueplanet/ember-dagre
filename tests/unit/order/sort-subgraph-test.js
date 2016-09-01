@@ -1,6 +1,6 @@
 import {expect} from 'chai'
-import sortSubgraph from 'dagre/order/sort-subgraph'
-import {Graph} from 'graphlib'
+import sortSubgraph from 'ciena-dagre/order/sort-subgraph'
+import {Graph} from 'ciena-graphlib'
 import _ from 'lodash'
 import {beforeEach, describe, it} from 'mocha'
 

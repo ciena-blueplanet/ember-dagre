@@ -1,6 +1,6 @@
 import {expect} from 'chai'
-import barycenter from 'dagre/order/barycenter'
-import {Graph} from 'graphlib'
+import barycenter from 'ciena-dagre/order/barycenter'
+import {Graph} from 'ciena-graphlib'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('order/barycenter', function () {

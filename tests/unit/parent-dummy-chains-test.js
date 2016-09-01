@@ -1,6 +1,6 @@
 import {expect} from 'chai'
-import parentDummyChains from 'dagre/parent-dummy-chains'
-import {Graph} from 'graphlib'
+import parentDummyChains from 'ciena-dagre/parent-dummy-chains'
+import {Graph} from 'ciena-graphlib'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('parentDummyChains', function () {

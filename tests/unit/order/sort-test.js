@@ -1,5 +1,5 @@
 import {expect} from 'chai'
-import sort from 'dagre/order/sort'
+import sort from 'ciena-dagre/order/sort'
 import {describe, it} from 'mocha'
 
 describe('sort', function () {
