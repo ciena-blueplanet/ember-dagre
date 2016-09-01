@@ -1,3 +1,7 @@
+# 2.0.0
+
+* Now exporting `ciena-dagre` instead of `dagre` as we are now consuming Ciena's dagre fork from npm.
+
 # 1.0.0
 
 * **Updated** dependencies to latest versions.
