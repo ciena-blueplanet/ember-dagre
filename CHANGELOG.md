@@ -1,3 +1,10 @@
+# 2.1.0
+
+* **Added** additional builds to CI to make sure addon works with latest versions of Ember.
+* **Removed** files from npm package that aren't necessary (all of the various config files).
+* **Updated** dependencies to latest versions.
+
+
 # 2.0.0
 
 * Now exporting `ciena-dagre` instead of `dagre` as we are now consuming Ciena's dagre fork from npm.
