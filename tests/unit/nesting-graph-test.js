@@ -1,6 +1,6 @@
 import {expect} from 'chai'
 import nestingGraph from 'ciena-dagre/nesting-graph'
-import {alg, Graph} from 'ciena-graphlib'
+import {Graph, alg} from 'ciena-graphlib'
 const {components} = alg
 import {beforeEach, describe, it} from 'mocha'
 
@@ -8,7 +8,7 @@ describe('rank/nestingGraph', function () {
   var g
 
   beforeEach(function () {
-    g = new Graph({ compound: true })
+    g = new Graph({compound: true})
           .setGraph({})
           .setDefaultNodeLabel(function () { return {} })
   })
@@ -30,16 +30,16 @@ describe('rank/nestingGraph', function () {
 
       var borderTop = g.node('sg1').borderTop
       var borderBottom = g.node('sg1').borderBottom
-      expect(borderTop).to.exist
-      expect(borderBottom).to.exist
+      expect(borderTop).not.to.be.oneOf([null, undefined])
+      expect(borderBottom).not.to.be.oneOf([null, undefined])
       expect(g.parent(borderTop)).to.equal('sg1')
       expect(g.parent(borderBottom)).to.equal('sg1')
       expect(g.outEdges(borderTop, 'a')).to.have.length(1)
       expect(g.edge(g.outEdges(borderTop, 'a')[0]).minlen).equals(1)
       expect(g.outEdges('a', borderBottom)).to.have.length(1)
       expect(g.edge(g.outEdges('a', borderBottom)[0]).minlen).equals(1)
-      expect(g.node(borderTop)).eqls({ width: 0, height: 0, dummy: 'border' })
-      expect(g.node(borderBottom)).eqls({ width: 0, height: 0, dummy: 'border' })
+      expect(g.node(borderTop)).eqls({width: 0, height: 0, dummy: 'border'})
+      expect(g.node(borderBottom)).eqls({width: 0, height: 0, dummy: 'border'})
     })
 
     it('adds edges between borders of nested subgraphs', function () {
@@ -51,10 +51,10 @@ describe('rank/nestingGraph', function () {
       var sg1Bottom = g.node('sg1').borderBottom
       var sg2Top = g.node('sg2').borderTop
       var sg2Bottom = g.node('sg2').borderBottom
-      expect(sg1Top).to.exist
-      expect(sg1Bottom).to.exist
-      expect(sg2Top).to.exist
-      expect(sg2Bottom).to.exist
+      expect(sg1Top).not.to.be.oneOf([null, undefined])
+      expect(sg1Bottom).not.to.be.oneOf([null, undefined])
+      expect(sg2Top).not.to.be.oneOf([null, undefined])
+      expect(sg2Bottom).not.to.be.oneOf([null, undefined])
       expect(g.outEdges(sg1Top, sg2Top)).to.have.length(1)
       expect(g.edge(g.outEdges(sg1Top, sg2Top)[0]).minlen).equals(1)
       expect(g.outEdges(sg2Bottom, sg1Bottom)).to.have.length(1)
@@ -66,8 +66,8 @@ describe('rank/nestingGraph', function () {
       // the edge between the top (and bottom) border nodes and nodes in the
       // subgraph have weights exceeding anything in the graph.
       g.setParent('x', 'sg')
-      g.setEdge('a', 'x', { weight: 100 })
-      g.setEdge('x', 'b', { weight: 200 })
+      g.setEdge('a', 'x', {weight: 100})
+      g.setEdge('x', 'b', {weight: 200})
       nestingGraph.run(g)
 
       var top = g.node('sg').borderTop
@@ -82,10 +82,10 @@ describe('rank/nestingGraph', function () {
 
       var root = g.graph().nestingRoot
       var borderTop = g.node('sg1').borderTop
-      expect(root).to.exist
-      expect(borderTop).to.exist
+      expect(root).not.to.be.oneOf([null, undefined])
+      expect(borderTop).not.to.be.oneOf([null, undefined])
       expect(g.outEdges(root, borderTop)).to.have.length(1)
-      expect(g.hasEdge(g.outEdges(root, borderTop)[0])).to.be.true
+      expect(g.hasEdge(g.outEdges(root, borderTop)[0])).to.equal(true)
     })
 
     it('adds an edge from root to each node with the correct minlen #1', function () {
@@ -93,9 +93,9 @@ describe('rank/nestingGraph', function () {
       nestingGraph.run(g)
 
       var root = g.graph().nestingRoot
-      expect(root).to.exist
+      expect(root).not.to.be.oneOf([null, undefined])
       expect(g.outEdges(root, 'a')).to.have.length(1)
-      expect(g.edge(g.outEdges(root, 'a')[0])).eqls({ weight: 0, minlen: 1 })
+      expect(g.edge(g.outEdges(root, 'a')[0])).eqls({weight: 0, minlen: 1})
     })
 
     it('adds an edge from root to each node with the correct minlen #2', function () {
@@ -103,9 +103,9 @@ describe('rank/nestingGraph', function () {
       nestingGraph.run(g)
 
       var root = g.graph().nestingRoot
-      expect(root).to.exist
+      expect(root).not.to.be.oneOf([null, undefined])
       expect(g.outEdges(root, 'a')).to.have.length(1)
-      expect(g.edge(g.outEdges(root, 'a')[0])).eqls({ weight: 0, minlen: 3 })
+      expect(g.edge(g.outEdges(root, 'a')[0])).eqls({weight: 0, minlen: 3})
     })
 
     it('adds an edge from root to each node with the correct minlen #3', function () {
@@ -114,9 +114,9 @@ describe('rank/nestingGraph', function () {
       nestingGraph.run(g)
 
       var root = g.graph().nestingRoot
-      expect(root).to.exist
+      expect(root).not.to.be.oneOf([null, undefined])
       expect(g.outEdges(root, 'a')).to.have.length(1)
-      expect(g.edge(g.outEdges(root, 'a')[0])).eqls({ weight: 0, minlen: 5 })
+      expect(g.edge(g.outEdges(root, 'a')[0])).eqls({weight: 0, minlen: 5})
     })
 
     it('does not add an edge from the root to itself', function () {
@@ -128,14 +128,14 @@ describe('rank/nestingGraph', function () {
     })
 
     it('expands inter-node edges to separate SG border and nodes #1', function () {
-      g.setEdge('a', 'b', { minlen: 1 })
+      g.setEdge('a', 'b', {minlen: 1})
       nestingGraph.run(g)
       expect(g.edge('a', 'b').minlen).equals(1)
     })
 
     it('expands inter-node edges to separate SG border and nodes #2', function () {
       g.setParent('a', 'sg1')
-      g.setEdge('a', 'b', { minlen: 1 })
+      g.setEdge('a', 'b', {minlen: 1})
       nestingGraph.run(g)
       expect(g.edge('a', 'b').minlen).equals(3)
     })
@@ -143,7 +143,7 @@ describe('rank/nestingGraph', function () {
     it('expands inter-node edges to separate SG border and nodes #3', function () {
       g.setParent('sg2', 'sg1')
       g.setParent('a', 'sg2')
-      g.setEdge('a', 'b', { minlen: 1 })
+      g.setEdge('a', 'b', {minlen: 1})
       nestingGraph.run(g)
       expect(g.edge('a', 'b').minlen).equals(5)
     })
@@ -184,7 +184,7 @@ describe('rank/nestingGraph', function () {
   describe('cleanup', function () {
     it('removes nesting graph edges', function () {
       g.setParent('a', 'sg1')
-      g.setEdge('a', 'b', { minlen: 1 })
+      g.setEdge('a', 'b', {minlen: 1})
       nestingGraph.run(g)
       nestingGraph.cleanup(g)
       expect(g.successors('a')).eqls(['b'])

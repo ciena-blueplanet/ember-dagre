@@ -7,26 +7,26 @@ describe('addBorderSegments', function () {
   var g
 
   beforeEach(function () {
-    g = new Graph({ compound: true })
+    g = new Graph({compound: true})
   })
 
   it('does not add border nodes for a non-compound graph', function () {
     var g = new Graph()
-    g.setNode('a', { rank: 0 })
+    g.setNode('a', {rank: 0})
     addBorderSegments(g)
     expect(g.nodeCount()).to.equal(1)
-    expect(g.node('a')).to.eql({ rank: 0 })
+    expect(g.node('a')).to.eql({rank: 0})
   })
 
   it('does not add border nodes for a graph with no clusters', function () {
-    g.setNode('a', { rank: 0 })
+    g.setNode('a', {rank: 0})
     addBorderSegments(g)
     expect(g.nodeCount()).to.equal(1)
-    expect(g.node('a')).to.eql({ rank: 0 })
+    expect(g.node('a')).to.eql({rank: 0})
   })
 
   it('adds a border for a single-rank subgraph', function () {
-    g.setNode('sg', { minRank: 1, maxRank: 1 })
+    g.setNode('sg', {minRank: 1, maxRank: 1})
     addBorderSegments(g)
 
     var bl = g.node('sg').borderLeft[1]
@@ -50,7 +50,7 @@ describe('addBorderSegments', function () {
   })
 
   it('adds a border for a multi-rank subgraph', function () {
-    g.setNode('sg', { minRank: 1, maxRank: 2 })
+    g.setNode('sg', {minRank: 1, maxRank: 2})
     addBorderSegments(g)
 
     var sgNode = g.node('sg')
@@ -92,13 +92,13 @@ describe('addBorderSegments', function () {
     })
     expect(g.parent(br1)).equals('sg')
 
-    expect(g.hasEdge(sgNode.borderLeft[1], sgNode.borderLeft[2])).to.be.true
-    expect(g.hasEdge(sgNode.borderRight[1], sgNode.borderRight[2])).to.be.true
+    expect(g.hasEdge(sgNode.borderLeft[1], sgNode.borderLeft[2])).to.equal(true)
+    expect(g.hasEdge(sgNode.borderRight[1], sgNode.borderRight[2])).to.equal(true)
   })
 
   it('adds borders for nested subgraphs', function () {
-    g.setNode('sg1', { minRank: 1, maxRank: 1 })
-    g.setNode('sg2', { minRank: 1, maxRank: 1 })
+    g.setNode('sg1', {minRank: 1, maxRank: 1})
+    g.setNode('sg2', {minRank: 1, maxRank: 1})
     g.setParent('sg2', 'sg1')
     addBorderSegments(g)
 

@@ -6,7 +6,7 @@ module.exports = {
       .then(() => {
         return this.addAddonsToProject({
           packages: [
-            {name: 'ember-graphlib', target: '^2.0.0'},
+            {name: 'ember-graphlib', target: '^2.1.0'},
             {name: 'ember-lodash-shim', target: '^1.0.0'}
           ]
         })
