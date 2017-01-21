@@ -15,7 +15,7 @@ describe('rank', function () {
     g = new Graph()
       .setGraph({})
       .setDefaultNodeLabel(function () { return {} })
-      .setDefaultEdgeLabel(function () { return { minlen: 1, weight: 1 } })
+      .setDefaultEdgeLabel(function () { return {minlen: 1, weight: 1} })
       .setPath(['a', 'b', 'c', 'd', 'h'])
       .setPath(['a', 'e', 'g', 'h'])
       .setPath(['a', 'f', 'g'])

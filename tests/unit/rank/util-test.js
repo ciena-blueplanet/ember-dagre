@@ -11,7 +11,7 @@ describe('rank/util', function () {
     beforeEach(function () {
       g = new Graph()
         .setDefaultNodeLabel(function () { return {} })
-        .setDefaultEdgeLabel(function () { return { minlen: 1 } })
+        .setDefaultEdgeLabel(function () { return {minlen: 1} })
     })
 
     it('can assign a rank to a single node graph', function () {
@@ -52,7 +52,7 @@ describe('rank/util', function () {
     it('uses the minlen attribute on the edge', function () {
       g.setPath(['a', 'b', 'd'])
       g.setEdge('a', 'c')
-      g.setEdge('c', 'd', { minlen: 2 })
+      g.setEdge('c', 'd', {minlen: 2})
       longestPath(g)
       normalizeRanks(g)
       expect(g.node('a').rank).to.equal(0)

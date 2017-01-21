@@ -8,7 +8,7 @@ describe('order/addSubgraphConstraints', function () {
   var g, cg
 
   beforeEach(function () {
-    g = new Graph({ compound: true })
+    g = new Graph({compound: true})
     cg = new Graph()
   })
 
@@ -35,7 +35,7 @@ describe('order/addSubgraphConstraints', function () {
     g.setParent('a', 'sg1')
     g.setParent('b', 'sg2')
     addSubgraphConstraints(g, cg, vs)
-    expect(cg.edges()).eqls([{ v: 'sg1', w: 'sg2' }])
+    expect(cg.edges()).eqls([{v: 'sg1', w: 'sg2'}])
   })
 
   it('works for multiple levels', function () {
@@ -53,8 +53,8 @@ describe('order/addSubgraphConstraints', function () {
     g.setParent('sg5', 'sg4')
     addSubgraphConstraints(g, cg, vs)
     expect(_.sortBy(cg.edges(), 'v')).eqls([
-      { v: 'sg1', w: 'sg4' },
-      { v: 'sg2', w: 'sg3' }
+      {v: 'sg1', w: 'sg4'},
+      {v: 'sg2', w: 'sg3'}
     ])
   })
 })

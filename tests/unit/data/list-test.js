@@ -11,7 +11,7 @@ describe('data.List', function () {
 
   describe('dequeue', function () {
     it('returns undefined with an empty list', function () {
-      expect(list.dequeue()).to.be.undefined
+      expect(list.dequeue()).to.equal(undefined)
     })
 
     it('unlinks and returns the first entry', function () {
@@ -47,13 +47,13 @@ describe('data.List', function () {
       list.enqueue(obj)
       list2.enqueue(obj)
 
-      expect(list.dequeue()).to.be.undefined
+      expect(list.dequeue()).to.equal(undefined)
       expect(list2.dequeue()).to.equal(obj)
     })
 
     it('can return a string representation', function () {
-      list.enqueue({ entry: 1 })
-      list.enqueue({ entry: 2 })
+      list.enqueue({entry: 1})
+      list.enqueue({entry: 2})
 
       expect(list.toString()).to.equal('[{"entry":1}, {"entry":2}]')
     })

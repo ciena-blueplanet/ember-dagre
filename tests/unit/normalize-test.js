@@ -8,25 +8,25 @@ describe('normalize', function () {
   var g
 
   beforeEach(function () {
-    g = new Graph({ multigraph: true, compound: true }).setGraph({})
+    g = new Graph({multigraph: true, compound: true}).setGraph({})
   })
 
   describe('run', function () {
     it('does not change a short edge', function () {
-      g.setNode('a', { rank: 0 })
-      g.setNode('b', { rank: 1 })
+      g.setNode('a', {rank: 0})
+      g.setNode('b', {rank: 1})
       g.setEdge('a', 'b', {})
 
       normalize.run(g)
 
-      expect(_.map(g.edges(), incidentNodes)).to.eql([{ v: 'a', w: 'b' }])
+      expect(_.map(g.edges(), incidentNodes)).to.eql([{v: 'a', w: 'b'}])
       expect(g.node('a').rank).to.equal(0)
       expect(g.node('b').rank).to.equal(1)
     })
 
     it('splits a two layer edge into two segments', function () {
-      g.setNode('a', { rank: 0 })
-      g.setNode('b', { rank: 2 })
+      g.setNode('a', {rank: 0})
+      g.setNode('b', {rank: 2})
       g.setEdge('a', 'b', {})
 
       normalize.run(g)
@@ -44,9 +44,9 @@ describe('normalize', function () {
     })
 
     it('assigns width = 0, height = 0 to dummy nodes by default', function () {
-      g.setNode('a', { rank: 0 })
-      g.setNode('b', { rank: 2 })
-      g.setEdge('a', 'b', { width: 10, height: 10 })
+      g.setNode('a', {rank: 0})
+      g.setNode('b', {rank: 2})
+      g.setEdge('a', 'b', {width: 10, height: 10})
 
       normalize.run(g)
 
@@ -57,9 +57,9 @@ describe('normalize', function () {
     })
 
     it('assigns width and height from the edge for the node on labelRank', function () {
-      g.setNode('a', { rank: 0 })
-      g.setNode('b', { rank: 4 })
-      g.setEdge('a', 'b', { width: 20, height: 10, labelRank: 2 })
+      g.setNode('a', {rank: 0})
+      g.setNode('b', {rank: 4})
+      g.setEdge('a', 'b', {width: 20, height: 10, labelRank: 2})
 
       normalize.run(g)
 
@@ -70,9 +70,9 @@ describe('normalize', function () {
     })
 
     it('preserves the weight for the edge', function () {
-      g.setNode('a', { rank: 0 })
-      g.setNode('b', { rank: 2 })
-      g.setEdge('a', 'b', { weight: 2 })
+      g.setNode('a', {rank: 0})
+      g.setNode('b', {rank: 2})
+      g.setEdge('a', 'b', {weight: 2})
 
       normalize.run(g)
 
@@ -83,22 +83,22 @@ describe('normalize', function () {
 
   describe('undo', function () {
     it('reverses the run operation', function () {
-      g.setNode('a', { rank: 0 })
-      g.setNode('b', { rank: 2 })
+      g.setNode('a', {rank: 0})
+      g.setNode('b', {rank: 2})
       g.setEdge('a', 'b', {})
 
       normalize.run(g)
       normalize.undo(g)
 
-      expect(_.map(g.edges(), incidentNodes)).to.eql([{ v: 'a', w: 'b' }])
+      expect(_.map(g.edges(), incidentNodes)).to.eql([{v: 'a', w: 'b'}])
       expect(g.node('a').rank).to.equal(0)
       expect(g.node('b').rank).to.equal(2)
     })
 
     it('restores previous edge labels', function () {
-      g.setNode('a', { rank: 0 })
-      g.setNode('b', { rank: 2 })
-      g.setEdge('a', 'b', { foo: 'bar' })
+      g.setNode('a', {rank: 0})
+      g.setNode('b', {rank: 2})
+      g.setEdge('a', 'b', {foo: 'bar'})
 
       normalize.run(g)
       normalize.undo(g)
@@ -107,8 +107,8 @@ describe('normalize', function () {
     })
 
     it("collects assigned coordinates into the 'points' attribute", function () {
-      g.setNode('a', { rank: 0 })
-      g.setNode('b', { rank: 2 })
+      g.setNode('a', {rank: 0})
+      g.setNode('b', {rank: 2})
       g.setEdge('a', 'b', {})
 
       normalize.run(g)
@@ -119,12 +119,12 @@ describe('normalize', function () {
 
       normalize.undo(g)
 
-      expect(g.edge('a', 'b').points).eqls([{ x: 5, y: 10 }])
+      expect(g.edge('a', 'b').points).eqls([{x: 5, y: 10}])
     })
 
     it("merges assigned coordinates into the 'points' attribute", function () {
-      g.setNode('a', { rank: 0 })
-      g.setNode('b', { rank: 4 })
+      g.setNode('a', {rank: 0})
+      g.setNode('b', {rank: 4})
       g.setEdge('a', 'b', {})
 
       normalize.run(g)
@@ -144,13 +144,13 @@ describe('normalize', function () {
       normalize.undo(g)
 
       expect(g.edge('a', 'b').points)
-        .eqls([{ x: 5, y: 10 }, { x: 20, y: 25 }, { x: 100, y: 200 }])
+        .eqls([{x: 5, y: 10}, {x: 20, y: 25}, {x: 100, y: 200}])
     })
 
     it('sets coords and dims for the label, if the edge has one', function () {
-      g.setNode('a', { rank: 0 })
-      g.setNode('b', { rank: 2 })
-      g.setEdge('a', 'b', { width: 10, height: 20, labelRank: 1 })
+      g.setNode('a', {rank: 0})
+      g.setNode('b', {rank: 2})
+      g.setEdge('a', 'b', {width: 10, height: 20, labelRank: 1})
 
       normalize.run(g)
 
@@ -168,9 +168,9 @@ describe('normalize', function () {
     })
 
     it('sets coords and dims for the label, if the long edge has one', function () {
-      g.setNode('a', { rank: 0 })
-      g.setNode('b', { rank: 4 })
-      g.setEdge('a', 'b', { width: 10, height: 20, labelRank: 2 })
+      g.setNode('a', {rank: 0})
+      g.setNode('b', {rank: 4})
+      g.setEdge('a', 'b', {width: 10, height: 20, labelRank: 2})
 
       normalize.run(g)
 
@@ -188,8 +188,8 @@ describe('normalize', function () {
     })
 
     it('restores multi-edges', function () {
-      g.setNode('a', { rank: 0 })
-      g.setNode('b', { rank: 2 })
+      g.setNode('a', {rank: 0})
+      g.setNode('b', {rank: 2})
       g.setEdge('a', 'b', {}, 'bar')
       g.setEdge('a', 'b', {}, 'foo')
 
@@ -208,13 +208,13 @@ describe('normalize', function () {
 
       normalize.undo(g)
 
-      expect(g.hasEdge('a', 'b')).to.be.false
-      expect(g.edge('a', 'b', 'bar').points).eqls([{ x: 5, y: 10 }])
-      expect(g.edge('a', 'b', 'foo').points).eqls([{ x: 15, y: 20 }])
+      expect(g.hasEdge('a', 'b')).to.equal(false)
+      expect(g.edge('a', 'b', 'bar').points).eqls([{x: 5, y: 10}])
+      expect(g.edge('a', 'b', 'foo').points).eqls([{x: 15, y: 20}])
     })
   })
 })
 
 function incidentNodes (edge) {
-  return { v: edge.v, w: edge.w }
+  return {v: edge.v, w: edge.w}
 }

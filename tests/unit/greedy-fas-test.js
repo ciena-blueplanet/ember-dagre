@@ -1,6 +1,6 @@
 import {expect} from 'chai'
 import greedyFAS from 'ciena-dagre/greedy-fas'
-import {alg, Graph} from 'ciena-graphlib'
+import {Graph, alg} from 'ciena-graphlib'
 const {findCycles} = alg
 import _ from 'lodash'
 import {beforeEach, describe, it} from 'mocha'
@@ -79,13 +79,13 @@ describe('greedyFAS', function () {
   })
 
   it('works for multigraphs', function () {
-    var g = new Graph({ multigraph: true })
+    var g = new Graph({multigraph: true})
     g.setEdge('a', 'b', 5, 'foo')
     g.setEdge('b', 'a', 2, 'bar')
     g.setEdge('b', 'a', 2, 'baz')
     expect(_.sortBy(greedyFAS(g, weightFn(g)), 'name')).to.eql([
-      { v: 'b', w: 'a', name: 'bar' },
-      { v: 'b', w: 'a', name: 'baz' }
+      {v: 'b', w: 'a', name: 'bar'},
+      {v: 'b', w: 'a', name: 'baz'}
     ])
   })
 })
