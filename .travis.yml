@@ -16,6 +16,10 @@ addons:
     - g++-4.8
   firefox: 'latest-esr'
 
+cache:
+  directories:
+    - node_modules
+
 env:
   matrix:
   - EMBER_TRY_SCENARIO=ember-1-12
@@ -42,25 +46,28 @@ env:
 matrix:
   fast_finish: true
   allow_failures:
-  - env: EMBER_TRY_SCENARIO=ember-release
   - env: EMBER_TRY_SCENARIO=ember-beta
   - env: EMBER_TRY_SCENARIO=ember-canary
 
 before_install:
-- "export DISPLAY=:99.0"
-- "sh -e /etc/init.d/xvfb start"
 - npm config set spin false
 - npm install -g coveralls pr-bumper
+- $(npm root -g)/pr-bumper/.travis/maybe-check-scope.sh
 
 install:
 - $(npm root -g)/pr-bumper/.travis/maybe-install.sh
 
+before_script:
+- "export DISPLAY=:99.0"
+- "sh -e /etc/init.d/xvfb start"
+- sleep 3 # give xvfb some time to start
+
 script:
 - $(npm root -g)/pr-bumper/.travis/maybe-test.sh
-- if [ $EMBER_TRY_SCENARIO == "default" ]; then $(npm root -g)/pr-bumper/.travis/maybe-bump-version.sh; fi
+- .travis/maybe-bump-version.sh
 
 after_success:
-- $(npm root -g)/pr-bumper/.travis/maybe-publish-coverage.sh
+- .travis/maybe-publish-coverage.sh
 
 deploy:
   provider: npm
