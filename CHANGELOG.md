@@ -1,3 +1,9 @@
+# 2.3.0
+
+* **Replaced** bower dependencies with node dependencies.
+* **Updated** `ember-lodash-shim` to version `2.0.0` which shaves over 150 KB off of the production build.
+
+
 # 2.2.0
 
 * **Added** `ember-lodash-shim` configuration to optimize build to only include necessary `lodash` methods.
