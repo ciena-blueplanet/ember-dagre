@@ -1,3 +1,8 @@
+# 2.3.1 (2017-05-12)
+
+* **Updated** secure auth token
+
+
 # 2.3.0
 
 * **Replaced** bower dependencies with node dependencies.
