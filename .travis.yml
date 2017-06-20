@@ -64,13 +64,8 @@ deploy:
     secure: W/wyKlpZxMb6CQQ/NdQYlwzveFwp4GZdb+Psc9eFn343QkDw5DU+VdrENSEMHSK5wDm8XmIyGo+hbKYnzQr63e9+z5lRbSw1KlQ1iXr8qPvPzrFLhd4Uab14tcb0atOii2517ihnbmBn6Xcdk4Z1NNrZphwhkeY7Uyukni7OUWVFrXDFkpQ5lA8fxm2ZTTtTggPB8KVTv+qGfmOQzvHFTzHEIqzMPKICtFGQpqjUAwzhaF+8KffOcYuHTTMwdER2DHIx7hYAH4H+YanIzKA6tuY+xnZE5M4U5O8oFue5ZMKfMxI5suZdzWof7NPYpIKt4VMkIFvYwdb2dKY79Dgqb/Ud5kRnC8fAL2kPiBUnvn+VrX8hGAIjWlyvmh0V5+YvD8OTlV2+0jD5KtJyuPS1sDxFngctZx/iWKTnu44kaLPrspG2QbNMCxtBUmeUcd453iSL/BlzAu2LVQlIfZtSFjDDFU2LJ/mzcbsfdEvJKbljm1b6nzkGuXao4E41qc2XCuFsLLVk0Pnc9Vj8Bd42MGz5jm7J2uRCrRZNyNF95hXjdRm6TW8Ujsb5b0OAP6IsW31TjnU8CcMMp4oR72Tfnk71ihjwBx6+c69P0DNgCTTxrUZzL9IUJBU9ZyZO5RUO4ZWfvdUaZDSh5xVLpNs/DyfeTism+VvmjFnlpfkTzvY=
   on:
     all_branches: true
-<<<<<<< HEAD
     condition: "$EMBER_TRY_SCENARIO = 'ember-default'"
     node: 'stable'
-=======
-    condition: "$EMBER_TRY_SCENARIO = 'default'"
-    node: '6.9.1'
->>>>>>> 93b6e4479eeed0d94f2445dfaeaba70ccf84818d
     tags: true
 
 after_deploy:
