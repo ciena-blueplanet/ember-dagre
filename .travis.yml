@@ -22,32 +22,20 @@ cache:
 
 env:
   matrix:
-  - EMBER_TRY_SCENARIO=ember-1-12
-  - EMBER_TRY_SCENARIO=ember-1-13
-  - EMBER_TRY_SCENARIO=ember-2-0
-  - EMBER_TRY_SCENARIO=ember-2-1
-  - EMBER_TRY_SCENARIO=ember-2-2
-  - EMBER_TRY_SCENARIO=ember-2-3
-  - EMBER_TRY_SCENARIO=ember-2-4
-  - EMBER_TRY_SCENARIO=ember-2-5
-  - EMBER_TRY_SCENARIO=ember-2-6
-  - EMBER_TRY_SCENARIO=ember-2-7
   - EMBER_TRY_SCENARIO=ember-2-8
+<<<<<<< HEAD
   - EMBER_TRY_SCENARIO=ember-2-9
   - EMBER_TRY_SCENARIO=ember-2-10
   - EMBER_TRY_SCENARIO=ember-default
   - EMBER_TRY_SCENARIO=ember-release
-  - EMBER_TRY_SCENARIO=ember-beta
-  - EMBER_TRY_SCENARIO=ember-canary
   global:
     - CXX=g++-4.8
-    - secure: Li++KYg96HDvb4rQwRgf8VjKRhBCU1m+5yRpthYsJ/yTX9Kf1Fk3FoMa54dYttDT28jHy8/1br4/GNIw8aqQIOZKMA3z5NjrCBr0O4jrBAl/NAOdlBFnbz0L1k78D/DwigPw7ZKrjuPm/hJt9cM0osVDqBqYZzLeY7nIJuDB/z0BN0FXq6VOjTewt4QFIAVALwqrc3B9wcBVIOdaCGuyCkj9V4XklMX+PHmq49d3k2tfoncL+5HNBqOqxB5jPss35K46VbFGoLW3/gXCgPrTvcbmM7q/KMqLCsxzkCcPRjIwRZTu7XnKvO7jft4o1btVHL40fIxJ+nzK0v5Z99KKtfFKC7+xkoZb6IWBec8lMlRycawsekhK1glq+rxITjQD6ydyCQdgy6ptkbWRSiB+wXlqjdIzMXEmt7s6elpcBufRU8k+VZhXA9vJTcGxWSCzn4imr/Ysd5+k9d5SlQ2+eQU7rRPy/H9kmXjpxqTzeC8+UcCXKSgxQxvc45or2KQsRFu/+2fZhfO93NfJEiUQFLz602mX+cBS0UhvavRgk4m/8G1lH1at1mzqmUndMTJiDWA0TnidhIVuBwCXFUpULOnpbgFn6dH8N3SuOvaI5kHVSBeGN+LBQOybU5964p/FqLS8jZNTwXtxHORjiMbw10RrJkSwO72hS1WNalqdT2c=
+    - secure: oeu9jlEjQaqNMt1G7i73ciojX9+lCNoQOFjN20hqIK5uUkBOmDlwvo5hvcOzDj4IPpScgMaXYbKGolZSNCNZ3XKecMLyCSWuD1wm51HfeIU/nblMtlwJQUVM7bJBxua8m9NyCbXLbqlkfG8cNvvReJECZ9aheMYB/FD3zxAzCH9xvP3q3xGE4QRCtTM+Pz3WXpyUtQFxQqXxuz4wPFybZL2aTeMfti3HIz4VzOooJjp9k/MLkGR29qg7ivkfAGY3PB0U8b5VaojOAkMLwgcpMbfgrt9V66aqE0dOfh+L2/2Vmii34ZKh+R1+lFuWeait+cyzdqgMn6nTE++Ltj36+Yfk+R5xj2pl9/rQ2tLeaXzNznF9XM+V7tAf+DaYiZs9RSJNA+Pi/aL2MRv3pMu6G1bgJSeIBpNTZQxOSPbK1gOwiCexuTBgLAc+I9+pyflkEpbWNubXbTCuP3jfL1GN9gBwMAo6V7aevBSlgUfvt+g3pL7NIwynoR3QE+PziiE9sPk2sEDjoV0r5zDx/0sztrgRSiA0Tj3PiTeOl7qFbH4Sl4hvKWWkkCcLLUumQyvOUh+x58LnYddtUDwn5MeY7cA1/+XqhjwBmeJjfaFJMniIiS1ZYdhh6T9yiEH02m5801JQtQn6VdKwl4t1OQa8ZDXOmnenSVPz7lItkMCgFw4=
 
 matrix:
   fast_finish: true
   allow_failures:
-  - env: EMBER_TRY_SCENARIO=ember-beta
-  - env: EMBER_TRY_SCENARIO=ember-canary
+  - env: EMBER_TRY_SCENARIO=ember-release
 
 before_install:
 - npm config set spin false
@@ -74,11 +62,16 @@ deploy:
   email: npm.ciena@gmail.com
   skip_cleanup: true
   api_key:
-    secure: C7uTwe8XGfuBCfaanBHMocJlAj4CcD5YMnNkuQwLcSOSnSqLDd9dr17eIUx3N3Wv7KSR+H1XMnVrACkwRG7IOWQxe0vkoIT2xSKT6pyGEQTN01QG/tkcDGtBdpfQ0ljlsrevBDKbHqOGXuRresjtPy84qR7fX1w7NLGI2PiCbjjw+o3lWL7VXgsgmFU+6X9Dfck/EnhqFMCVJ7doctlCX+hm1Gb6dazbaSJSyO6LLOduGvPc1ZXybx4sbKf7i8kTsRqWxl2332lem30jYeshJqYA+U8c3zc71mvgf4zUfP5+bB3Z9hl3ZS7iPnsaoYonxclG7AMcGenVG2yGaMtibuCOyPIh2GXN7EXTWAdxhU+DJjJd/1OYT3NdTx0gF0JWZ2Rh4XTcibuLNgTWYx9nZrdxAUJKDgBCbqP5IXVr65Gt871kr+qQFmKstq/irl5mL9JPgxZ2NdldGLaZwWqkkCDdpZ2gFdfkaEDNxyvLgjJSGEhCGJxrz6AdsTc3J8OO3HcYftdmWDXYDTY+ziMKhMk2bgIjvZA0xDUmAPCXxdIjWVzlowGBkCmRtee3iQOAhfTWUV1Yi/POJOV6VZsFfRCSEvnDmx+v/sD6k1P5Q3w/5niYUwk6pO3fPOPjdmuSfZkcbTLql6os/TRNj0OMhgLsOQkwgd2BsXpa2hCInho=
+    secure: W/wyKlpZxMb6CQQ/NdQYlwzveFwp4GZdb+Psc9eFn343QkDw5DU+VdrENSEMHSK5wDm8XmIyGo+hbKYnzQr63e9+z5lRbSw1KlQ1iXr8qPvPzrFLhd4Uab14tcb0atOii2517ihnbmBn6Xcdk4Z1NNrZphwhkeY7Uyukni7OUWVFrXDFkpQ5lA8fxm2ZTTtTggPB8KVTv+qGfmOQzvHFTzHEIqzMPKICtFGQpqjUAwzhaF+8KffOcYuHTTMwdER2DHIx7hYAH4H+YanIzKA6tuY+xnZE5M4U5O8oFue5ZMKfMxI5suZdzWof7NPYpIKt4VMkIFvYwdb2dKY79Dgqb/Ud5kRnC8fAL2kPiBUnvn+VrX8hGAIjWlyvmh0V5+YvD8OTlV2+0jD5KtJyuPS1sDxFngctZx/iWKTnu44kaLPrspG2QbNMCxtBUmeUcd453iSL/BlzAu2LVQlIfZtSFjDDFU2LJ/mzcbsfdEvJKbljm1b6nzkGuXao4E41qc2XCuFsLLVk0Pnc9Vj8Bd42MGz5jm7J2uRCrRZNyNF95hXjdRm6TW8Ujsb5b0OAP6IsW31TjnU8CcMMp4oR72Tfnk71ihjwBx6+c69P0DNgCTTxrUZzL9IUJBU9ZyZO5RUO4ZWfvdUaZDSh5xVLpNs/DyfeTism+VvmjFnlpfkTzvY=
   on:
     all_branches: true
+<<<<<<< HEAD
     condition: "$EMBER_TRY_SCENARIO = 'ember-default'"
     node: 'stable'
+=======
+    condition: "$EMBER_TRY_SCENARIO = 'default'"
+    node: '6.9.1'
+>>>>>>> 93b6e4479eeed0d94f2445dfaeaba70ccf84818d
     tags: true
 
 after_deploy:
@@ -86,4 +79,4 @@ after_deploy:
 
 notifications:
   slack:
-    secure: bkICPl98uMRUke0uahSJ5T9VK45H9JHD1t4xegDr3VbxyXwg+xs4tEIA3CT9b/d4QrYlNRXmV1ueH+wEcwCh+MdbFKxNavO9SNXH2KOIDz8ijn2sGhQTyJP8eNERSMZ2LgSAZtcOpmskpH8bEqD8Jvs8SwvQtZlhSoqY0rdF2ICVcHiA0RBwa25Xja8vtwUOCrjkMD/Fc1DgXVvB46v8X5uEOekwzUcvMCuguzt+EnKTyur8xdlmCwngD1eg559lUO5YyQ4nv004Eu+t1qaCTFKafQSEfUDALwl60jSZJnYpf4EJiQd89j0UP3KtETk5Ck2vSNiPNBqPVsp/oc32JYRnm5I1FmaHbs568DDMpDxFBF4AeyCTUU5HF7L/+27OITa44EBziWG00swMWD2oAHeF3Mtzx1hxew9+ueWV++VmL6CdZnOt26+iBWE2L8zPjPHOkb3djjoCRRMoQCvU5xcOfqK/cpODM1rBUvAE3Dv9VMN+kaYb8ZOoCXvHaAsMVvcH1amhy29Fxa6ZOIBJvMV7SuOmTenYz3JphKJDTtedooUqTKQ4NIg9zonmyqukz6bVRXFPXEslOU+haGm8PLwZC2Qst5OnE0gMEqBbEtPnw86dVKTX3y0+uCTt7FEmIYSW5NfrXzIE7tW1KcQ87SE7VKIGu7Nv/R5YImbf51s=
+    secure: r05o0BQh3U87CgMyQXlCk3y3xmDGTnS+Lv6YT3PHrExCE6hEFZQEYDhp3YF9PDfgbh1INaznoRB44iJdKSqjPP6ngWHDAdlKPl1HK+N/TP5TVU/XHS9FLPXcvS5G5XQaxUm0+4nPGrgDsCoRJGH7vSiDyPDE6pIjczEYZ670JNZ69p2+Y3Mv3Z4Kfu+R99GfjkI8TpvIt5TXvgfnYx1MvvMqo5MOeeT1oAfU7VBik93dGkRnw97WGwhKQldEo4d8ZBJCUXgDNkLwLz3rJmWxI9vOtOj0uVg5yc4NxuSfB6ESp7NQOKLs9vjP0FXJcEPCHSDTZlZKn08EN9QheDlGQg1lALUeMpBY3YNCOyJIsRTsXE6QUmSPRoARSpIxOXFJnCaK16JL2kIRetf7BFb06bv8oWmFB+SmOyisuRl7yv1+R8M6dB7gZVWrPUvYMYC59UMUPQogAWVfEdldkJ4wOKsqz5uFHRu8APkE667EImvLSfl//nodaSgAONb8c3Pt6KJ3BkvJfTMOfPYRoVhk0fNi7Yvpyq2osvWLr6VEGzyRONpm6J2Ts1G7L3XFEouyq9CIT+0DTpwA9w3AJmUFPwg1xlz8++udwQr/1fkubaaHScVHlzRQulQdWXpENPpSbv1lZP3LHbGKXWOcX8rUEKOo97m4vsRLzrrOpWIdITI=
