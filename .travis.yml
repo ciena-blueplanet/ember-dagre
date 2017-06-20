@@ -23,7 +23,6 @@ cache:
 env:
   matrix:
   - EMBER_TRY_SCENARIO=ember-2-8
-<<<<<<< HEAD
   - EMBER_TRY_SCENARIO=ember-2-9
   - EMBER_TRY_SCENARIO=ember-2-10
   - EMBER_TRY_SCENARIO=ember-default
