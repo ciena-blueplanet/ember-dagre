@@ -35,7 +35,7 @@ env:
   - EMBER_TRY_SCENARIO=ember-2-8
   - EMBER_TRY_SCENARIO=ember-2-9
   - EMBER_TRY_SCENARIO=ember-2-10
-  - EMBER_TRY_SCENARIO=default
+  - EMBER_TRY_SCENARIO=ember-default
   - EMBER_TRY_SCENARIO=ember-release
   - EMBER_TRY_SCENARIO=ember-beta
   - EMBER_TRY_SCENARIO=ember-canary
@@ -77,7 +77,7 @@ deploy:
     secure: C7uTwe8XGfuBCfaanBHMocJlAj4CcD5YMnNkuQwLcSOSnSqLDd9dr17eIUx3N3Wv7KSR+H1XMnVrACkwRG7IOWQxe0vkoIT2xSKT6pyGEQTN01QG/tkcDGtBdpfQ0ljlsrevBDKbHqOGXuRresjtPy84qR7fX1w7NLGI2PiCbjjw+o3lWL7VXgsgmFU+6X9Dfck/EnhqFMCVJ7doctlCX+hm1Gb6dazbaSJSyO6LLOduGvPc1ZXybx4sbKf7i8kTsRqWxl2332lem30jYeshJqYA+U8c3zc71mvgf4zUfP5+bB3Z9hl3ZS7iPnsaoYonxclG7AMcGenVG2yGaMtibuCOyPIh2GXN7EXTWAdxhU+DJjJd/1OYT3NdTx0gF0JWZ2Rh4XTcibuLNgTWYx9nZrdxAUJKDgBCbqP5IXVr65Gt871kr+qQFmKstq/irl5mL9JPgxZ2NdldGLaZwWqkkCDdpZ2gFdfkaEDNxyvLgjJSGEhCGJxrz6AdsTc3J8OO3HcYftdmWDXYDTY+ziMKhMk2bgIjvZA0xDUmAPCXxdIjWVzlowGBkCmRtee3iQOAhfTWUV1Yi/POJOV6VZsFfRCSEvnDmx+v/sD6k1P5Q3w/5niYUwk6pO3fPOPjdmuSfZkcbTLql6os/TRNj0OMhgLsOQkwgd2BsXpa2hCInho=
   on:
     all_branches: true
-    condition: "$EMBER_TRY_SCENARIO = 'default'"
+    condition: "$EMBER_TRY_SCENARIO = 'ember-default'"
     node: 'stable'
     tags: true
 
