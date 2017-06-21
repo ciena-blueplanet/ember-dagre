@@ -12,6 +12,7 @@
 .github
 .gitignore
 .jshintrc
+.eslintrc.js
 .pullapprive.yml
 .travis
 .watchmanconfig
