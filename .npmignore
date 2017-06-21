@@ -9,6 +9,7 @@
 .ember-cli
 .eslintignore
 .eslintrc
+.eslintrc.js
 .github
 .gitignore
 .jshintrc
