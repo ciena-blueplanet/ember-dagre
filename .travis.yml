@@ -31,8 +31,9 @@ env:
 
 matrix:
   fast_finish: true
-  gallow_failures:
-     - env: EMBER_TRY_SCENARIO=ember-release
+  allow_failures:
+    - node_js: 'stable'
+    
 before_install:
 - npm config set spin false
 - npm install -g coveralls pr-bumper
