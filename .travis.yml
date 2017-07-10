@@ -14,7 +14,6 @@ addons:
     packages:
     - google-chrome-stable
     - g++-4.8
-  firefox: 'latest-esr'
 
 cache:
   directories:
@@ -22,9 +21,13 @@ cache:
 
 env:
   matrix:
-  - EMBER_TRY_SCENARIO=ember-2-8
-  - EMBER_TRY_SCENARIO=default
+  - EMBER_TRY_SCENARIO=ember-lts-2.4
+  - EMBER_TRY_SCENARIO=ember-lts-2.8
+  - EMBER_TRY_SCENARIO=ember-default
   - EMBER_TRY_SCENARIO=ember-release
+  - EMBER_TRY_SCENARIO=ember-beta
+  - EMBER_TRY_SCENARIO=ember-canary
+
   global:
     - CXX=g++-4.8
     - secure: oeu9jlEjQaqNMt1G7i73ciojX9+lCNoQOFjN20hqIK5uUkBOmDlwvo5hvcOzDj4IPpScgMaXYbKGolZSNCNZ3XKecMLyCSWuD1wm51HfeIU/nblMtlwJQUVM7bJBxua8m9NyCbXLbqlkfG8cNvvReJECZ9aheMYB/FD3zxAzCH9xvP3q3xGE4QRCtTM+Pz3WXpyUtQFxQqXxuz4wPFybZL2aTeMfti3HIz4VzOooJjp9k/MLkGR29qg7ivkfAGY3PB0U8b5VaojOAkMLwgcpMbfgrt9V66aqE0dOfh+L2/2Vmii34ZKh+R1+lFuWeait+cyzdqgMn6nTE++Ltj36+Yfk+R5xj2pl9/rQ2tLeaXzNznF9XM+V7tAf+DaYiZs9RSJNA+Pi/aL2MRv3pMu6G1bgJSeIBpNTZQxOSPbK1gOwiCexuTBgLAc+I9+pyflkEpbWNubXbTCuP3jfL1GN9gBwMAo6V7aevBSlgUfvt+g3pL7NIwynoR3QE+PziiE9sPk2sEDjoV0r5zDx/0sztrgRSiA0Tj3PiTeOl7qFbH4Sl4hvKWWkkCcLLUumQyvOUh+x58LnYddtUDwn5MeY7cA1/+XqhjwBmeJjfaFJMniIiS1ZYdhh6T9yiEH02m5801JQtQn6VdKwl4t1OQa8ZDXOmnenSVPz7lItkMCgFw4=
@@ -33,10 +36,13 @@ matrix:
   fast_finish: true
   allow_failures:
   - env: EMBER_TRY_SCENARIO=ember-release
+  - env: EMBER_TRY_SCENARIO=ember-beta
+  - env: EMBER_TRY_SCENARIO=ember-canary
+  - node_js: 'stable'
 
 before_install:
 - npm config set spin false
-- npm install -g coveralls pr-bumper
+- npm install -g coveralls pr-bumper@^1.0.0
 - $(npm root -g)/pr-bumper/.travis/maybe-check-scope.sh
 
 install:
@@ -62,7 +68,7 @@ deploy:
     secure: W/wyKlpZxMb6CQQ/NdQYlwzveFwp4GZdb+Psc9eFn343QkDw5DU+VdrENSEMHSK5wDm8XmIyGo+hbKYnzQr63e9+z5lRbSw1KlQ1iXr8qPvPzrFLhd4Uab14tcb0atOii2517ihnbmBn6Xcdk4Z1NNrZphwhkeY7Uyukni7OUWVFrXDFkpQ5lA8fxm2ZTTtTggPB8KVTv+qGfmOQzvHFTzHEIqzMPKICtFGQpqjUAwzhaF+8KffOcYuHTTMwdER2DHIx7hYAH4H+YanIzKA6tuY+xnZE5M4U5O8oFue5ZMKfMxI5suZdzWof7NPYpIKt4VMkIFvYwdb2dKY79Dgqb/Ud5kRnC8fAL2kPiBUnvn+VrX8hGAIjWlyvmh0V5+YvD8OTlV2+0jD5KtJyuPS1sDxFngctZx/iWKTnu44kaLPrspG2QbNMCxtBUmeUcd453iSL/BlzAu2LVQlIfZtSFjDDFU2LJ/mzcbsfdEvJKbljm1b6nzkGuXao4E41qc2XCuFsLLVk0Pnc9Vj8Bd42MGz5jm7J2uRCrRZNyNF95hXjdRm6TW8Ujsb5b0OAP6IsW31TjnU8CcMMp4oR72Tfnk71ihjwBx6+c69P0DNgCTTxrUZzL9IUJBU9ZyZO5RUO4ZWfvdUaZDSh5xVLpNs/DyfeTism+VvmjFnlpfkTzvY=
   on:
     all_branches: true
-    condition: "$EMBER_TRY_SCENARIO = 'default'"
+    condition: "$EMBER_TRY_SCENARIO = 'ember-default'"
     node: '6.9.1'
     tags: true
 
