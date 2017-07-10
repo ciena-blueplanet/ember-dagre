@@ -1,3 +1,8 @@
+# 2.3.2 (2017-07-10)
+
+Upgrade Ember CLI version from 2.11.0 to 2.12.3
+
+
 # 2.3.1 (2017-05-12)
 
 * **Updated** secure auth token
