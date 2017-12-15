@@ -1,7 +1,7 @@
 import {expect} from 'chai'
 import addSubgraphConstraints from 'ciena-dagre/order/add-subgraph-constraints'
 import {Graph} from 'ciena-graphlib'
-import _ from 'lodash'
+import {sortByProps} from 'dummy/tests/helpers/array-helpers'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('order/addSubgraphConstraints', function () {
@@ -14,7 +14,7 @@ describe('order/addSubgraphConstraints', function () {
 
   it('does not change CG for a flat set of nodes', function () {
     var vs = ['a', 'b', 'c', 'd']
-    _.forEach(vs, function (v) { g.setNode(v) })
+    vs.forEach(v => g.setNode(v))
     addSubgraphConstraints(g, cg, vs)
     expect(cg.nodeCount()).equals(0)
     expect(cg.edgeCount()).equals(0)
@@ -22,9 +22,7 @@ describe('order/addSubgraphConstraints', function () {
 
   it("doesn't create a constraint for contiguous subgraph nodes", function () {
     var vs = ['a', 'b', 'c']
-    _.forEach(vs, function (v) {
-      g.setParent(v, 'sg')
-    })
+    vs.forEach(v => g.setParent(v, 'sg'))
     addSubgraphConstraints(g, cg, vs)
     expect(cg.nodeCount()).equals(0)
     expect(cg.edgeCount()).equals(0)
@@ -40,9 +38,7 @@ describe('order/addSubgraphConstraints', function () {
 
   it('works for multiple levels', function () {
     var vs = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
-    _.forEach(vs, function (v) {
-      g.setNode(v)
-    })
+    vs.forEach(v => g.setNode(v))
     g.setParent('b', 'sg2')
     g.setParent('sg2', 'sg1')
     g.setParent('c', 'sg1')
@@ -52,7 +48,7 @@ describe('order/addSubgraphConstraints', function () {
     g.setParent('g', 'sg5')
     g.setParent('sg5', 'sg4')
     addSubgraphConstraints(g, cg, vs)
-    expect(_.sortBy(cg.edges(), 'v')).eqls([
+    expect(cg.edges().sort(sortByProps(['v']))).eqls([
       {v: 'sg1', w: 'sg4'},
       {v: 'sg2', w: 'sg3'}
     ])

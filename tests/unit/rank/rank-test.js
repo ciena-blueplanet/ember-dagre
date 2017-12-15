@@ -1,7 +1,6 @@
 import {expect} from 'chai'
 import rank from 'ciena-dagre/rank'
 import {Graph} from 'ciena-graphlib'
-import _ from 'lodash'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('rank', function () {
@@ -21,12 +20,12 @@ describe('rank', function () {
       .setPath(['a', 'f', 'g'])
   })
 
-  _.forEach(RANKERS, function (ranker) {
+  RANKERS.forEach(ranker => {
     describe(ranker, function () {
       it('respects the minlen attribute', function () {
         g.graph().ranker = ranker
         rank(g)
-        _.forEach(g.edges(), function (e) {
+        g.edges().forEach(e => {
           var vRank = g.node(e.v).rank
           var wRank = g.node(e.w).rank
           expect(wRank - vRank).to.be.gte(g.edge(e).minlen)

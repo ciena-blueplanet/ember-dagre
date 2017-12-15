@@ -1,7 +1,7 @@
 import {expect} from 'chai'
 import normalize from 'ciena-dagre/normalize'
 import {Graph} from 'ciena-graphlib'
-import _ from 'lodash'
+import {sortByProps} from 'dummy/tests/helpers/array-helpers'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('normalize', function () {
@@ -19,7 +19,7 @@ describe('normalize', function () {
 
       normalize.run(g)
 
-      expect(_.map(g.edges(), incidentNodes)).to.eql([{v: 'a', w: 'b'}])
+      expect(g.edges().map(incidentNodes)).to.eql([{v: 'a', w: 'b'}])
       expect(g.node('a').rank).to.equal(0)
       expect(g.node('b').rank).to.equal(1)
     })
@@ -90,7 +90,7 @@ describe('normalize', function () {
       normalize.run(g)
       normalize.undo(g)
 
-      expect(_.map(g.edges(), incidentNodes)).to.eql([{v: 'a', w: 'b'}])
+      expect(g.edges().map(incidentNodes)).to.eql([{v: 'a', w: 'b'}])
       expect(g.node('a').rank).to.equal(0)
       expect(g.node('b').rank).to.equal(2)
     })
@@ -162,7 +162,7 @@ describe('normalize', function () {
 
       normalize.undo(g)
 
-      expect(_.pick(g.edge('a', 'b'), ['x', 'y', 'width', 'height'])).eqls({
+      expect(['x', 'y', 'width', 'height'].reduce((acc, key) => ({...acc, [key]: g.edge('a', 'b')[key]}), {})).eqls({
         x: 50, y: 60, width: 20, height: 10
       })
     })
@@ -182,7 +182,7 @@ describe('normalize', function () {
 
       normalize.undo(g)
 
-      expect(_.pick(g.edge('a', 'b'), ['x', 'y', 'width', 'height'])).eqls({
+      expect(['x', 'y', 'width', 'height'].reduce((acc, key) => ({...acc, [key]: g.edge('a', 'b')[key]}), {})).eqls({
         x: 50, y: 60, width: 20, height: 10
       })
     })
@@ -195,7 +195,7 @@ describe('normalize', function () {
 
       normalize.run(g)
 
-      var outEdges = _.sortBy(g.outEdges('a'), 'name')
+      var outEdges = g.outEdges('a').sort(sortByProps(['name']))
       expect(outEdges).to.have.length(2)
 
       var barDummy = g.node(outEdges[0].w)

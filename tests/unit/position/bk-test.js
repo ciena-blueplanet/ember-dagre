@@ -15,7 +15,6 @@ import {
 
 import {buildLayerMatrix} from 'ciena-dagre/util'
 import {Graph} from 'ciena-graphlib'
-import _ from 'lodash'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('position/bk', function () {
@@ -59,7 +58,7 @@ describe('position/bk', function () {
       expect(hasConflict(conflicts, 'b', 'c')).to.equal(false)
     })
 
-    _.forEach(['a', 'b', 'c', 'd'], function (v) {
+    ;['a', 'b', 'c', 'd'].forEach(v => {
       it('does not mark type-0 conflicts (' + v + ' is dummy)', function () {
         g.node(v).dummy = true
 
@@ -69,9 +68,9 @@ describe('position/bk', function () {
       })
     })
 
-    _.forEach(['a', 'b', 'c', 'd'], function (v) {
+    ;['a', 'b', 'c', 'd'].forEach(v => {
       it('does mark type-1 conflicts (' + v + ' is non-dummy)', function () {
-        _.forEach(['a', 'b', 'c', 'd'], function (w) {
+        ;['a', 'b', 'c', 'd'].forEach(w => {
           if (v !== w) {
             g.node(w).dummy = true
           }
@@ -89,7 +88,7 @@ describe('position/bk', function () {
     })
 
     it('does not mark type-2 conflicts (all dummies)', function () {
-      _.forEach(['a', 'b', 'c', 'd'], function (v) {
+      ;['a', 'b', 'c', 'd'].forEach(v => {
         g.node(v).dummy = true
       })
 
@@ -118,11 +117,11 @@ describe('position/bk', function () {
     })
 
     it('marks type-2 conflicts favoring border segments #1', function () {
-      _.forEach(['a', 'd'], function (v) {
+      ;['a', 'd'].forEach(v => {
         g.node(v).dummy = true
       })
 
-      _.forEach(['b', 'c'], function (v) {
+      ;['b', 'c'].forEach(v => {
         g.node(v).dummy = 'border'
       })
 
@@ -133,11 +132,11 @@ describe('position/bk', function () {
     })
 
     it('marks type-2 conflicts favoring border segments #2', function () {
-      _.forEach(['b', 'c'], function (v) {
+      ;['b', 'c'].forEach(v => {
         g.node(v).dummy = true
       })
 
-      _.forEach(['a', 'd'], function (v) {
+      ;['a', 'd'].forEach(v => {
         g.node(v).dummy = 'border'
       })
 

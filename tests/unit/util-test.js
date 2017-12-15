@@ -1,7 +1,6 @@
 import {expect} from 'chai'
 import utils from 'ciena-dagre/util'
 import {Graph} from 'ciena-graphlib'
-import _ from 'lodash'
 import {afterEach, beforeEach, describe, it} from 'mocha'
 
 const asNonCompoundGraph = utils.asNonCompoundGraph
@@ -182,7 +181,7 @@ describe('util', function () {
 
     it('logs timing information', function () {
       var capture = []
-      console.log = function () { capture.push(_.toArray(arguments)[0]) }
+      console.log = function () { capture.push(Array(arguments)[0])) }
       time('foo', function () {})
       expect(capture.length).to.equal(1)
       expect(capture[0]).to.match(/^foo time: .*ms/)
@@ -190,7 +189,7 @@ describe('util', function () {
 
     it('returns the value from the evaluated function', function () {
       console.log = function () {}
-      expect(time('foo', _.constant('bar'))).to.equal('bar')
+      expect(time('foo', 'bar')).to.equal('bar')
     })
   })
 
