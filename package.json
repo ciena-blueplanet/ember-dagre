@@ -26,7 +26,6 @@
     "bower": "^1.8.2",
     "broccoli-asset-rev": "^2.4.5",
     "chai-jquery": "^2.0.0",
-    "ciena-graphlib": "^1.0.8",
     "ember-cli": "2.12.3",
     "ember-cli-chai": "0.4.3",
     "ember-cli-dependency-checker": "^1.3.0",
@@ -39,7 +38,6 @@
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
     "ember-frost-test": "^3.1.0",
-    "ember-graphlib": "^2.2.3",
     "ember-hook": "1.4.2",
     "ember-load-initializers": "^0.6.0",
     "ember-lodash-shim": "^2.0.5",
@@ -60,7 +58,8 @@
     "broccoli-funnel": "^2.0.1",
     "broccoli-merge-trees": "^2.0.0",
     "ciena-dagre": "^1.0.10",
-    "ember-cli-babel": "^5.1.7"
+    "ember-cli-babel": "^5.1.7",
+    "ember-graphlib": "^3.0.0"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
