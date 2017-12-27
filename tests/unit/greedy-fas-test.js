@@ -6,23 +6,23 @@ import _ from 'lodash'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('greedyFAS', function () {
-  var g
+  let g
 
   beforeEach(function () {
     g = new Graph()
   })
 
-  it('returns the empty set for empty graphs', function () {
+  it('should return the empty set for empty graphs', function () {
     expect(greedyFAS(g)).to.eql([])
   })
 
-  it('returns the empty set for single-node graphs', function () {
+  it('should return the empty set for single-node graphs', function () {
     g.setNode('a')
     expect(greedyFAS(g)).to.eql([])
   })
 
-  it('returns an empty set if the input graph is acyclic', function () {
-    var g = new Graph()
+  it('should return an empty set if the input graph is acyclic', function () {
+    let g = new Graph()
     g.setEdge('a', 'b')
     g.setEdge('b', 'c')
     g.setEdge('b', 'd')
@@ -30,15 +30,15 @@ describe('greedyFAS', function () {
     expect(greedyFAS(g)).to.eql([])
   })
 
-  it('returns a single edge with a simple cycle', function () {
-    var g = new Graph()
+  it('should return a single edge with a simple cycle', function () {
+    let g = new Graph()
     g.setEdge('a', 'b')
     g.setEdge('b', 'a')
     checkFAS(g, greedyFAS(g))
   })
 
-  it('returns a single edge in a 4-node cycle', function () {
-    var g = new Graph()
+  it('should return a single edge in a 4-node cycle', function () {
+    let g = new Graph()
     g.setEdge('n1', 'n2')
     g.setPath(['n2', 'n3', 'n4', 'n5', 'n2'])
     g.setEdge('n3', 'n5')
@@ -47,8 +47,8 @@ describe('greedyFAS', function () {
     checkFAS(g, greedyFAS(g))
   })
 
-  it('returns two edges for two 4-node cycles', function () {
-    var g = new Graph()
+  it('should return two edges for two 4-node cycles', function () {
+    let g = new Graph()
     g.setEdge('n1', 'n2')
     g.setPath(['n2', 'n3', 'n4', 'n5', 'n2'])
     g.setEdge('n3', 'n5')
@@ -61,25 +61,25 @@ describe('greedyFAS', function () {
     checkFAS(g, greedyFAS(g))
   })
 
-  it('works with arbitrarily weighted edges', function () {
+  it('should work with arbitrarily weighted edges', function () {
     // Our algorithm should also work for graphs with multi-edges, a graph
     // where more than one edge can be pointing in the same direction between
     // the same pair of incident nodes. We try this by assigning weights to
     // our edges representing the number of edges from one node to the other.
 
-    var g1 = new Graph()
+    let g1 = new Graph()
     g1.setEdge('n1', 'n2', 2)
     g1.setEdge('n2', 'n1', 1)
     expect(greedyFAS(g1, weightFn(g1))).to.eql([{v: 'n2', w: 'n1'}])
 
-    var g2 = new Graph()
+    let g2 = new Graph()
     g2.setEdge('n1', 'n2', 1)
     g2.setEdge('n2', 'n1', 2)
     expect(greedyFAS(g2, weightFn(g2))).to.eql([{v: 'n1', w: 'n2'}])
   })
 
-  it('works for multigraphs', function () {
-    var g = new Graph({multigraph: true})
+  it('should work for multigraphs', function () {
+    let g = new Graph({multigraph: true})
     g.setEdge('a', 'b', 5, 'foo')
     g.setEdge('b', 'a', 2, 'bar')
     g.setEdge('b', 'a', 2, 'baz')
@@ -91,8 +91,8 @@ describe('greedyFAS', function () {
 })
 
 function checkFAS (g, fas) {
-  var n = g.nodeCount()
-  var m = g.edgeCount()
+  const n = g.nodeCount()
+  const m = g.edgeCount()
   _.forEach(fas, function (edge) {
     g.removeEdge(edge.v, edge.w)
   })

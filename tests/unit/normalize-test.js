@@ -5,14 +5,14 @@ import _ from 'lodash'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('normalize', function () {
-  var g
+  let g
 
   beforeEach(function () {
     g = new Graph({multigraph: true, compound: true}).setGraph({})
   })
 
   describe('run', function () {
-    it('does not change a short edge', function () {
+    it('should not change a short edge', function () {
       g.setNode('a', {rank: 0})
       g.setNode('b', {rank: 1})
       g.setEdge('a', 'b', {})
@@ -24,7 +24,7 @@ describe('normalize', function () {
       expect(g.node('b').rank).to.equal(1)
     })
 
-    it('splits a two layer edge into two segments', function () {
+    it('should split a two layer edge into two segments', function () {
       g.setNode('a', {rank: 0})
       g.setNode('b', {rank: 2})
       g.setEdge('a', 'b', {})
@@ -32,7 +32,7 @@ describe('normalize', function () {
       normalize.run(g)
 
       expect(g.successors('a')).to.have.length(1)
-      var successor = g.successors('a')[0]
+      const successor = g.successors('a')[0]
       expect(g.node(successor).dummy).to.equal('edge')
       expect(g.node(successor).rank).to.equal(1)
       expect(g.successors(successor)).to.eql(['b'])
@@ -43,7 +43,7 @@ describe('normalize', function () {
       expect(g.graph().dummyChains[0]).to.equal(successor)
     })
 
-    it('assigns width = 0, height = 0 to dummy nodes by default', function () {
+    it('should assign width = 0, height = 0 to dummy nodes by default', function () {
       g.setNode('a', {rank: 0})
       g.setNode('b', {rank: 2})
       g.setEdge('a', 'b', {width: 10, height: 10})
@@ -51,25 +51,25 @@ describe('normalize', function () {
       normalize.run(g)
 
       expect(g.successors('a')).to.have.length(1)
-      var successor = g.successors('a')[0]
+      const successor = g.successors('a')[0]
       expect(g.node(successor).width).to.equal(0)
       expect(g.node(successor).height).to.equal(0)
     })
 
-    it('assigns width and height from the edge for the node on labelRank', function () {
+    it('should assign width and height from the edge for the node on labelRank', function () {
       g.setNode('a', {rank: 0})
       g.setNode('b', {rank: 4})
       g.setEdge('a', 'b', {width: 20, height: 10, labelRank: 2})
 
       normalize.run(g)
 
-      var labelV = g.successors(g.successors('a')[0])[0]
-      var labelNode = g.node(labelV)
+      const labelV = g.successors(g.successors('a')[0])[0]
+      const labelNode = g.node(labelV)
       expect(labelNode.width).to.equal(20)
       expect(labelNode.height).to.equal(10)
     })
 
-    it('preserves the weight for the edge', function () {
+    it('should preserve the weight for the edge', function () {
       g.setNode('a', {rank: 0})
       g.setNode('b', {rank: 2})
       g.setEdge('a', 'b', {weight: 2})
@@ -82,7 +82,7 @@ describe('normalize', function () {
   })
 
   describe('undo', function () {
-    it('reverses the run operation', function () {
+    it('should reverse the run operation', function () {
       g.setNode('a', {rank: 0})
       g.setNode('b', {rank: 2})
       g.setEdge('a', 'b', {})
@@ -95,7 +95,7 @@ describe('normalize', function () {
       expect(g.node('b').rank).to.equal(2)
     })
 
-    it('restores previous edge labels', function () {
+    it('should restore previous edge labels', function () {
       g.setNode('a', {rank: 0})
       g.setNode('b', {rank: 2})
       g.setEdge('a', 'b', {foo: 'bar'})
@@ -106,14 +106,14 @@ describe('normalize', function () {
       expect(g.edge('a', 'b').foo).equals('bar')
     })
 
-    it("collects assigned coordinates into the 'points' attribute", function () {
+    it("should collect assigned coordinates into the 'points' attribute", function () {
       g.setNode('a', {rank: 0})
       g.setNode('b', {rank: 2})
       g.setEdge('a', 'b', {})
 
       normalize.run(g)
 
-      var dummyLabel = g.node(g.neighbors('a')[0])
+      let dummyLabel = g.node(g.neighbors('a')[0])
       dummyLabel.x = 5
       dummyLabel.y = 10
 
@@ -122,22 +122,22 @@ describe('normalize', function () {
       expect(g.edge('a', 'b').points).eqls([{x: 5, y: 10}])
     })
 
-    it("merges assigned coordinates into the 'points' attribute", function () {
+    it("should merge assigned coordinates into the 'points' attribute", function () {
       g.setNode('a', {rank: 0})
       g.setNode('b', {rank: 4})
       g.setEdge('a', 'b', {})
 
       normalize.run(g)
 
-      var aSucLabel = g.node(g.neighbors('a')[0])
+      let aSucLabel = g.node(g.neighbors('a')[0])
       aSucLabel.x = 5
       aSucLabel.y = 10
 
-      var midLabel = g.node(g.successors(g.successors('a')[0])[0])
+      let midLabel = g.node(g.successors(g.successors('a')[0])[0])
       midLabel.x = 20
       midLabel.y = 25
 
-      var bPredLabel = g.node(g.neighbors('b')[0])
+      let bPredLabel = g.node(g.neighbors('b')[0])
       bPredLabel.x = 100
       bPredLabel.y = 200
 
@@ -147,14 +147,14 @@ describe('normalize', function () {
         .eqls([{x: 5, y: 10}, {x: 20, y: 25}, {x: 100, y: 200}])
     })
 
-    it('sets coords and dims for the label, if the edge has one', function () {
+    it('should set coords and dims for the label, if the edge has one', function () {
       g.setNode('a', {rank: 0})
       g.setNode('b', {rank: 2})
       g.setEdge('a', 'b', {width: 10, height: 20, labelRank: 1})
 
       normalize.run(g)
 
-      var labelNode = g.node(g.successors('a')[0])
+      let labelNode = g.node(g.successors('a')[0])
       labelNode.x = 50
       labelNode.y = 60
       labelNode.width = 20
@@ -167,14 +167,14 @@ describe('normalize', function () {
       })
     })
 
-    it('sets coords and dims for the label, if the long edge has one', function () {
+    it('should set coords and dims for the label, if the long edge has one', function () {
       g.setNode('a', {rank: 0})
       g.setNode('b', {rank: 4})
       g.setEdge('a', 'b', {width: 10, height: 20, labelRank: 2})
 
       normalize.run(g)
 
-      var labelNode = g.node(g.successors(g.successors('a')[0])[0])
+      let labelNode = g.node(g.successors(g.successors('a')[0])[0])
       labelNode.x = 50
       labelNode.y = 60
       labelNode.width = 20
@@ -187,7 +187,7 @@ describe('normalize', function () {
       })
     })
 
-    it('restores multi-edges', function () {
+    it('should restore multi-edges', function () {
       g.setNode('a', {rank: 0})
       g.setNode('b', {rank: 2})
       g.setEdge('a', 'b', {}, 'bar')
@@ -195,14 +195,14 @@ describe('normalize', function () {
 
       normalize.run(g)
 
-      var outEdges = _.sortBy(g.outEdges('a'), 'name')
+      const outEdges = _.sortBy(g.outEdges('a'), 'name')
       expect(outEdges).to.have.length(2)
 
-      var barDummy = g.node(outEdges[0].w)
+      let barDummy = g.node(outEdges[0].w)
       barDummy.x = 5
       barDummy.y = 10
 
-      var fooDummy = g.node(outEdges[1].w)
+      let fooDummy = g.node(outEdges[1].w)
       fooDummy.x = 15
       fooDummy.y = 20
 

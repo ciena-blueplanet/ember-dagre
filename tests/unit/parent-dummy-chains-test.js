@@ -4,13 +4,13 @@ import {Graph} from 'ciena-graphlib'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('parentDummyChains', function () {
-  var g
+  let g
 
   beforeEach(function () {
     g = new Graph({compound: true}).setGraph({})
   })
 
-  it('does not set a parent if both the tail and head have no parent', function () {
+  it('should not set a parent if both the tail and head have no parent', function () {
     g.setNode('a')
     g.setNode('b')
     g.setNode('d1', {edgeObj: {v: 'a', w: 'b'}})
@@ -21,7 +21,7 @@ describe('parentDummyChains', function () {
     expect(g.parent('d1')).to.equal(undefined)
   })
 
-  it("uses the tail's parent for the first node if it is not the root", function () {
+  it("should use the tail's parent for the first node if it is not the root", function () {
     g.setParent('a', 'sg1')
     g.setNode('sg1', {minRank: 0, maxRank: 2})
     g.setNode('d1', {edgeObj: {v: 'a', w: 'b'}, rank: 2})
@@ -32,7 +32,7 @@ describe('parentDummyChains', function () {
     expect(g.parent('d1')).equals('sg1')
   })
 
-  it("uses the heads's parent for the first node if tail's is root", function () {
+  it("should use the heads's parent for the first node if tail's is root", function () {
     g.setParent('b', 'sg1')
     g.setNode('sg1', {minRank: 1, maxRank: 3})
     g.setNode('d1', {edgeObj: {v: 'a', w: 'b'}, rank: 1})
@@ -43,7 +43,7 @@ describe('parentDummyChains', function () {
     expect(g.parent('d1')).equals('sg1')
   })
 
-  it('handles a long chain starting in a subgraph', function () {
+  it('should handle a long chain starting in a subgraph', function () {
     g.setParent('a', 'sg1')
     g.setNode('sg1', {minRank: 0, maxRank: 2})
     g.setNode('d1', {edgeObj: {v: 'a', w: 'b'}, rank: 2})
@@ -58,7 +58,7 @@ describe('parentDummyChains', function () {
     expect(g.parent('d3')).to.equal(undefined)
   })
 
-  it('handles a long chain ending in a subgraph', function () {
+  it('should handle a long chain ending in a subgraph', function () {
     g.setParent('b', 'sg1')
     g.setNode('sg1', {minRank: 3, maxRank: 5})
     g.setNode('d1', {edgeObj: {v: 'a', w: 'b'}, rank: 1})
@@ -73,7 +73,7 @@ describe('parentDummyChains', function () {
     expect(g.parent('d3')).equals('sg1')
   })
 
-  it('handles nested subgraphs', function () {
+  it('should handle nested subgraphs', function () {
     g.setParent('a', 'sg2')
     g.setParent('sg2', 'sg1')
     g.setNode('sg1', {minRank: 0, maxRank: 4})
@@ -82,7 +82,7 @@ describe('parentDummyChains', function () {
     g.setParent('sg4', 'sg3')
     g.setNode('sg3', {minRank: 6, maxRank: 10})
     g.setNode('sg4', {minRank: 7, maxRank: 9})
-    for (var i = 0; i < 5; ++i) {
+    for (let i = 0; i < 5; ++i) {
       g.setNode('d' + (i + 1), {rank: i + 3})
     }
     g.node('d1').edgeObj = {v: 'a', w: 'b'}
@@ -97,7 +97,7 @@ describe('parentDummyChains', function () {
     expect(g.parent('d5')).equals('sg4')
   })
 
-  it('handles overlapping rank ranges', function () {
+  it('should handle overlapping rank ranges', function () {
     g.setParent('a', 'sg1')
     g.setNode('sg1', {minRank: 0, maxRank: 3})
     g.setParent('b', 'sg2')
@@ -114,7 +114,7 @@ describe('parentDummyChains', function () {
     expect(g.parent('d3')).equals('sg2')
   })
 
-  it('handles an LCA that is not the root of the graph #1', function () {
+  it('should handle an LCA that is not the root of the graph #1', function () {
     g.setParent('a', 'sg1')
     g.setParent('sg2', 'sg1')
     g.setNode('sg1', {minRank: 0, maxRank: 6})
@@ -130,7 +130,7 @@ describe('parentDummyChains', function () {
     expect(g.parent('d2')).equals('sg2')
   })
 
-  it('handles an LCA that is not the root of the graph #2', function () {
+  it('should handle an LCA that is not the root of the graph #2', function () {
     g.setParent('a', 'sg2')
     g.setParent('sg2', 'sg1')
     g.setNode('sg1', {minRank: 0, maxRank: 6})

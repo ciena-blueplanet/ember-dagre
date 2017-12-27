@@ -3,26 +3,26 @@ import List from 'ciena-dagre/data/list'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('data.List', function () {
-  var list
+  let list
 
   beforeEach(function () {
     list = new List()
   })
 
   describe('dequeue', function () {
-    it('returns undefined with an empty list', function () {
+    it('should return undefined with an empty list', function () {
       expect(list.dequeue()).to.equal(undefined)
     })
 
-    it('unlinks and returns the first entry', function () {
-      var obj = {}
+    it('should unlink and return the first entry', function () {
+      const obj = {}
       list.enqueue(obj)
       expect(list.dequeue()).to.equal(obj)
     })
 
-    it('unlinks and returns multiple entries in FIFO order', function () {
-      var obj1 = {}
-      var obj2 = {}
+    it('should unlink and return multiple entries in FIFO order', function () {
+      const obj1 = {}
+      const obj2 = {}
       list.enqueue(obj1)
       list.enqueue(obj2)
 
@@ -30,9 +30,9 @@ describe('data.List', function () {
       expect(list.dequeue()).to.equal(obj2)
     })
 
-    it('unlinks and relinks an entry if it is re-enqueued', function () {
-      var obj1 = {}
-      var obj2 = {}
+    it('should unlink and relink an entry if it is re-enqueued', function () {
+      const obj1 = {}
+      const obj2 = {}
       list.enqueue(obj1)
       list.enqueue(obj2)
       list.enqueue(obj1)
@@ -41,9 +41,9 @@ describe('data.List', function () {
       expect(list.dequeue()).to.equal(obj1)
     })
 
-    it('unlinks and relinks an entry if it is enqueued on another list', function () {
-      var obj = {}
-      var list2 = new List()
+    it('should unlink and relink an entry if it is enqueued on another list', function () {
+      const obj = {}
+      const list2 = new List()
       list.enqueue(obj)
       list2.enqueue(obj)
 
@@ -51,7 +51,7 @@ describe('data.List', function () {
       expect(list2.dequeue()).to.equal(obj)
     })
 
-    it('can return a string representation', function () {
+    it('should return a string representation', function () {
       list.enqueue({entry: 1})
       list.enqueue({entry: 2})
 
