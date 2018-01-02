@@ -18,7 +18,10 @@ import _ from 'lodash'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('network simplex', function () {
-  var g, t, gansnerGraph, gansnerTree
+  let g
+  let t
+  let gansnerGraph
+  let gansnerTree
 
   beforeEach(function () {
     g = new Graph({multigraph: true})
@@ -43,20 +46,20 @@ describe('network simplex', function () {
       .setEdge('g', 'f')
   })
 
-  it('can assign a rank to a single node', function () {
+  it('should assign a rank to a single node', function () {
     g.setNode('a')
     ns(g)
     expect(g.node('a').rank).to.equal(0)
   })
 
-  it('can assign a rank to a 2-node connected graph', function () {
+  it('should assign a rank to a 2-node connected graph', function () {
     g.setEdge('a', 'b')
     ns(g)
     expect(g.node('a').rank).to.equal(0)
     expect(g.node('b').rank).to.equal(1)
   })
 
-  it('can assign ranks for a diamond', function () {
+  it('should assign ranks for a diamond', function () {
     g.setPath(['a', 'b', 'd'])
     g.setPath(['a', 'c', 'd'])
     ns(g)
@@ -66,7 +69,7 @@ describe('network simplex', function () {
     expect(g.node('d').rank).to.equal(2)
   })
 
-  it('uses the minlen attribute on the edge', function () {
+  it('should use the minlen attribute on the edge', function () {
     g.setPath(['a', 'b', 'd'])
     g.setEdge('a', 'c')
     g.setEdge('c', 'd', {minlen: 2})
@@ -80,7 +83,7 @@ describe('network simplex', function () {
     expect(g.node('d').rank).to.equal(3)
   })
 
-  it('can rank the gansner graph', function () {
+  it('should rank the gansner graph', function () {
     g = gansnerGraph
     ns(g)
     expect(g.node('a').rank).to.equal(0)
@@ -93,7 +96,7 @@ describe('network simplex', function () {
     expect(g.node('g').rank).to.equal(2)
   })
 
-  it('can handle multi-edges', function () {
+  it('should handle multi-edges', function () {
     g.setPath(['a', 'b', 'c', 'd'])
     g.setEdge('a', 'e', {weight: 2, minlen: 1})
     g.setEdge('e', 'd')
@@ -108,15 +111,15 @@ describe('network simplex', function () {
   })
 
   describe('leaveEdge', function () {
-    it('returns undefined if there is no edge with a negative cutvalue', function () {
-      var tree = new Graph({directed: false})
+    it('should return undefined if there is no edge with a negative cutvalue', function () {
+      let tree = new Graph({directed: false})
       tree.setEdge('a', 'b', {cutvalue: 1})
       tree.setEdge('b', 'c', {cutvalue: 1})
       expect(leaveEdge(tree)).to.equal(undefined)
     })
 
-    it('returns an edge if one is found with a negative cutvalue', function () {
-      var tree = new Graph({directed: false})
+    it('should return an edge if one is found with a negative cutvalue', function () {
+      let tree = new Graph({directed: false})
       tree.setEdge('a', 'b', {cutvalue: 1})
       tree.setEdge('b', 'c', {cutvalue: -1})
       expect(leaveEdge(tree)).to.eql({v: 'b', w: 'c'})
@@ -124,7 +127,7 @@ describe('network simplex', function () {
   })
 
   describe('enterEdge', function () {
-    it('finds an edge from the head to tail component', function () {
+    it('should find an edge from the head to tail component', function () {
       g
         .setNode('a', {rank: 0})
         .setNode('b', {rank: 2})
@@ -134,11 +137,11 @@ describe('network simplex', function () {
       t.setPath(['b', 'c', 'a'])
       initLowLimValues(t, 'c')
 
-      var f = enterEdge(t, g, {v: 'b', w: 'c'})
+      const f = enterEdge(t, g, {v: 'b', w: 'c'})
       expect(undirectedEdge(f)).to.eql(undirectedEdge({v: 'a', w: 'b'}))
     })
 
-    it('works when the root of the tree is in the tail component', function () {
+    it('should work when the root of the tree is in the tail component', function () {
       g
         .setNode('a', {rank: 0})
         .setNode('b', {rank: 2})
@@ -148,11 +151,11 @@ describe('network simplex', function () {
       t.setPath(['b', 'c', 'a'])
       initLowLimValues(t, 'b')
 
-      var f = enterEdge(t, g, {v: 'b', w: 'c'})
+      const f = enterEdge(t, g, {v: 'b', w: 'c'})
       expect(undirectedEdge(f)).to.eql(undirectedEdge({v: 'a', w: 'b'}))
     })
 
-    it('finds the edge with the least slack', function () {
+    it('should find the edge with the least slack', function () {
       g
         .setNode('a', {rank: 0})
         .setNode('b', {rank: 1})
@@ -164,69 +167,69 @@ describe('network simplex', function () {
       t.setPath(['c', 'd', 'a', 'b'])
       initLowLimValues(t, 'a')
 
-      var f = enterEdge(t, g, {v: 'c', w: 'd'})
+      const f = enterEdge(t, g, {v: 'c', w: 'd'})
       expect(undirectedEdge(f)).to.eql(undirectedEdge({v: 'b', w: 'c'}))
     })
 
-    it('finds an appropriate edge for gansner graph #1', function () {
+    it('should find an appropriate edge for gansner graph #1', function () {
       g = gansnerGraph
       t = gansnerTree
       longestPath(g)
       initLowLimValues(t, 'a')
 
-      var f = enterEdge(t, g, {v: 'g', w: 'h'})
+      const f = enterEdge(t, g, {v: 'g', w: 'h'})
       expect(undirectedEdge(f).v).to.equal('a')
       expect(['e', 'f']).to.include(undirectedEdge(f).w)
     })
 
-    it('finds an appropriate edge for gansner graph #2', function () {
+    it('should find an appropriate edge for gansner graph #2', function () {
       g = gansnerGraph
       t = gansnerTree
       longestPath(g)
       initLowLimValues(t, 'e')
 
-      var f = enterEdge(t, g, {v: 'g', w: 'h'})
+      const f = enterEdge(t, g, {v: 'g', w: 'h'})
       expect(undirectedEdge(f).v).to.equal('a')
       expect(['e', 'f']).to.include(undirectedEdge(f).w)
     })
 
-    it('finds an appropriate edge for gansner graph #3', function () {
+    it('should find an appropriate edge for gansner graph #3', function () {
       g = gansnerGraph
       t = gansnerTree
       longestPath(g)
       initLowLimValues(t, 'a')
 
-      var f = enterEdge(t, g, {v: 'h', w: 'g'})
+      const f = enterEdge(t, g, {v: 'h', w: 'g'})
       expect(undirectedEdge(f).v).to.equal('a')
       expect(['e', 'f']).to.include(undirectedEdge(f).w)
     })
 
-    it('finds an appropriate edge for gansner graph #4', function () {
+    it('should find an appropriate edge for gansner graph #4', function () {
       g = gansnerGraph
       t = gansnerTree
       longestPath(g)
       initLowLimValues(t, 'e')
 
-      var f = enterEdge(t, g, {v: 'h', w: 'g'})
+      const f = enterEdge(t, g, {v: 'h', w: 'g'})
       expect(undirectedEdge(f).v).to.equal('a')
       expect(['e', 'f']).to.include(undirectedEdge(f).w)
     })
   })
 
   describe('initLowLimValues', function () {
-    it('assigns low, lim, and parent for each node in a tree', function () {
-      var g = new Graph()
+    it('should assign low, lim, and parent for each node in a tree', function () {
+      let g = new Graph()
         .setDefaultNodeLabel(function () { return {} })
         .setNodes(['a', 'b', 'c', 'd', 'e'])
         .setPath(['a', 'b', 'a', 'c', 'd', 'c', 'e'])
 
       initLowLimValues(g, 'a')
 
-      var a = g.node('a')
-      var b = g.node('b')
-      var c = g.node('c')
-      var d = g.node('d')
-      var e = g.node('e')
+      const a = g.node('a')
+      const b = g.node('b')
+      const c = g.node('c')
+      const d = g.node('d')
+      const e = g.node('e')
 
       expect(_.sortBy(_.map(g.nodes(), function (v) { return g.node(v).lim })))
         .to.eql(_.range(1, 6))
@@ -250,7 +253,7 @@ describe('network simplex', function () {
   })
 
   describe('exchangeEdges', function () {
-    it('exchanges edges and updates cut values and low/lim numbers', function () {
+    it('should exchange edges and updates cut values and low/lim numbers', function () {
       g = gansnerGraph
       t = gansnerTree
       longestPath(g)
@@ -268,11 +271,11 @@ describe('network simplex', function () {
       expect(t.edge('g', 'f').cutvalue).to.equal(0)
 
       // ensure lim numbers look right
-      var lims = _.sortBy(_.map(t.nodes(), function (v) { return t.node(v).lim }))
+      const lims = _.sortBy(_.map(t.nodes(), function (v) { return t.node(v).lim }))
       expect(lims).to.eql(_.range(1, 9))
     })
 
-    it('updates ranks', function () {
+    it('should update ranks', function () {
       g = gansnerGraph
       t = gansnerTree
       longestPath(g)
@@ -296,7 +299,7 @@ describe('network simplex', function () {
   // Note: we use p for parent, c for child, gc_x for grandchild nodes, and o for
   // other nodes in the tree for these tests.
   describe('calcCutValue', function () {
-    it('works for a 2-node tree with c -> p', function () {
+    it('should work for a 2-node tree with c -> p', function () {
       g.setPath(['c', 'p'])
       t.setPath(['p', 'c'])
       initLowLimValues(t, 'p')
@@ -304,7 +307,7 @@ describe('network simplex', function () {
       expect(calcCutValue(t, g, 'c')).to.equal(1)
     })
 
-    it('works for a 2-node tree with c <- p', function () {
+    it('should work for a 2-node tree with c <- p', function () {
       g.setPath(['p', 'c'])
       t.setPath(['p', 'c'])
       initLowLimValues(t, 'p')
@@ -312,7 +315,7 @@ describe('network simplex', function () {
       expect(calcCutValue(t, g, 'c')).to.equal(1)
     })
 
-    it('works for 3-node tree with gc -> c -> p', function () {
+    it('should work for 3-node tree with gc -> c -> p', function () {
       g.setPath(['gc', 'c', 'p'])
       t
         .setEdge('gc', 'c', {cutvalue: 3})
@@ -322,7 +325,7 @@ describe('network simplex', function () {
       expect(calcCutValue(t, g, 'c')).to.equal(3)
     })
 
-    it('works for 3-node tree with gc -> c <- p', function () {
+    it('should work for 3-node tree with gc -> c <- p', function () {
       g
         .setEdge('p', 'c')
         .setEdge('gc', 'c')
@@ -334,7 +337,7 @@ describe('network simplex', function () {
       expect(calcCutValue(t, g, 'c')).to.equal(-1)
     })
 
-    it('works for 3-node tree with gc <- c -> p', function () {
+    it('should work for 3-node tree with gc <- c -> p', function () {
       g
         .setEdge('c', 'p')
         .setEdge('c', 'gc')
@@ -346,7 +349,7 @@ describe('network simplex', function () {
       expect(calcCutValue(t, g, 'c')).to.equal(-1)
     })
 
-    it('works for 3-node tree with gc <- c <- p', function () {
+    it('should work for 3-node tree with gc <- c <- p', function () {
       g.setPath(['p', 'c', 'gc'])
       t
         .setEdge('gc', 'c', {cutvalue: 3})
@@ -356,7 +359,7 @@ describe('network simplex', function () {
       expect(calcCutValue(t, g, 'c')).to.equal(3)
     })
 
-    it('works for 4-node tree with gc -> c -> p -> o, with o -> c', function () {
+    it('should work for 4-node tree with gc -> c -> p -> o, with o -> c', function () {
       g
         .setEdge('o', 'c', {weight: 7})
         .setPath(['gc', 'c', 'p', 'o'])
@@ -368,7 +371,7 @@ describe('network simplex', function () {
       expect(calcCutValue(t, g, 'c')).to.equal(-4)
     })
 
-    it('works for 4-node tree with gc -> c -> p -> o, with o <- c', function () {
+    it('should work for 4-node tree with gc -> c -> p -> o, with o <- c', function () {
       g
         .setEdge('c', 'o', {weight: 7})
         .setPath(['gc', 'c', 'p', 'o'])
@@ -380,7 +383,7 @@ describe('network simplex', function () {
       expect(calcCutValue(t, g, 'c')).to.equal(10)
     })
 
-    it('works for 4-node tree with o -> gc -> c -> p, with o -> c', function () {
+    it('should work for 4-node tree with o -> gc -> c -> p, with o -> c', function () {
       g
         .setEdge('o', 'c', {weight: 7})
         .setPath(['o', 'gc', 'c', 'p'])
@@ -393,7 +396,7 @@ describe('network simplex', function () {
       expect(calcCutValue(t, g, 'c')).to.equal(-4)
     })
 
-    it('works for 4-node tree with o -> gc -> c -> p, with o <- c', function () {
+    it('should work for 4-node tree with o -> gc -> c -> p, with o <- c', function () {
       g
         .setEdge('c', 'o', {weight: 7})
         .setPath(['o', 'gc', 'c', 'p'])
@@ -406,7 +409,7 @@ describe('network simplex', function () {
       expect(calcCutValue(t, g, 'c')).to.equal(10)
     })
 
-    it('works for 4-node tree with gc -> c <- p -> o, with o -> c', function () {
+    it('should work for 4-node tree with gc -> c <- p -> o, with o -> c', function () {
       g
         .setEdge('gc', 'c')
         .setEdge('p', 'c')
@@ -421,7 +424,7 @@ describe('network simplex', function () {
       expect(calcCutValue(t, g, 'c')).to.equal(6)
     })
 
-    it('works for 4-node tree with gc -> c <- p -> o, with o <- c', function () {
+    it('should work for 4-node tree with gc -> c <- p -> o, with o <- c', function () {
       g
         .setEdge('gc', 'c')
         .setEdge('p', 'c')
@@ -436,7 +439,7 @@ describe('network simplex', function () {
       expect(calcCutValue(t, g, 'c')).to.equal(-8)
     })
 
-    it('works for 4-node tree with o -> gc -> c <- p, with o -> c', function () {
+    it('should work for 4-node tree with o -> gc -> c <- p, with o -> c', function () {
       g
         .setEdge('o', 'c', {weight: 7})
         .setPath(['o', 'gc', 'c'])
@@ -450,7 +453,7 @@ describe('network simplex', function () {
       expect(calcCutValue(t, g, 'c')).to.equal(6)
     })
 
-    it('works for 4-node tree with o -> gc -> c <- p, with o <- c', function () {
+    it('should work for 4-node tree with o -> gc -> c <- p, with o <- c', function () {
       g
         .setEdge('c', 'o', {weight: 7})
         .setPath(['o', 'gc', 'c'])
@@ -466,7 +469,7 @@ describe('network simplex', function () {
   })
 
   describe('initCutValues', function () {
-    it('works for gansnerGraph', function () {
+    it('should work for gansnerGraph', function () {
       initLowLimValues(gansnerTree)
       initCutValues(gansnerTree, gansnerGraph)
       expect(gansnerTree.edge('a', 'b').cutvalue).to.equal(3)
@@ -478,7 +481,7 @@ describe('network simplex', function () {
       expect(gansnerTree.edge('f', 'g').cutvalue).to.equal(0)
     })
 
-    it('works for updated gansnerGraph', function () {
+    it('should work for updated gansnerGraph', function () {
       gansnerTree.removeEdge('g', 'h')
       gansnerTree.setEdge('a', 'e')
       initLowLimValues(gansnerTree)

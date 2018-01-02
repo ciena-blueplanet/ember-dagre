@@ -5,7 +5,8 @@ import _ from 'lodash'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('order/sortSubgraph', function () {
-  var g, cg
+  let g
+  let cg
 
   beforeEach(function () {
     g = new Graph({compound: true})
@@ -15,7 +16,7 @@ describe('order/sortSubgraph', function () {
     cg = new Graph()
   })
 
-  it('sorts a flat subgraph based on barycenter', function () {
+  it('should sort a flat subgraph based on barycenter', function () {
     g.setEdge(3, 'x')
     g.setEdge(1, 'y', {weight: 2})
     g.setEdge(4, 'y')
@@ -24,7 +25,7 @@ describe('order/sortSubgraph', function () {
     expect(sortSubgraph(g, 'movable', cg).vs).eqls(['y', 'x'])
   })
 
-  it('preserves the pos of a node (y) w/o neighbors in a flat subgraph', function () {
+  it('should preserve the pos of a node (y) w/o neighbors in a flat subgraph', function () {
     g.setEdge(3, 'x')
     g.setNode('y')
     g.setEdge(1, 'z', {weight: 2})
@@ -34,7 +35,7 @@ describe('order/sortSubgraph', function () {
     expect(sortSubgraph(g, 'movable', cg).vs).eqls(['z', 'y', 'x'])
   })
 
-  it('biases to the left without reverse bias', function () {
+  it('should bias to the left without reverse bias', function () {
     g.setEdge(1, 'x')
     g.setEdge(1, 'y')
     _.forEach(['x', 'y'], function (v) { g.setParent(v, 'movable') })
@@ -42,7 +43,7 @@ describe('order/sortSubgraph', function () {
     expect(sortSubgraph(g, 'movable', cg).vs).eqls(['x', 'y'])
   })
 
-  it('biases to the right with reverse bias', function () {
+  it('should bias to the right with reverse bias', function () {
     g.setEdge(1, 'x')
     g.setEdge(1, 'y')
     _.forEach(['x', 'y'], function (v) { g.setParent(v, 'movable') })
@@ -50,18 +51,18 @@ describe('order/sortSubgraph', function () {
     expect(sortSubgraph(g, 'movable', cg, true).vs).eqls(['y', 'x'])
   })
 
-  it('aggregates stats about the subgraph', function () {
+  it('should aggregate stats about the subgraph', function () {
     g.setEdge(3, 'x')
     g.setEdge(1, 'y', {weight: 2})
     g.setEdge(4, 'y')
     _.forEach(['x', 'y'], function (v) { g.setParent(v, 'movable') })
 
-    var results = sortSubgraph(g, 'movable', cg)
+    const results = sortSubgraph(g, 'movable', cg)
     expect(results.barycenter).to.equal(2.25)
     expect(results.weight).to.equal(4)
   })
 
-  it('can sort a nested subgraph with no barycenter', function () {
+  it('should sort a nested subgraph with no barycenter', function () {
     g.setNodes(['a', 'b', 'c'])
     g.setParent('a', 'y')
     g.setParent('b', 'y')
@@ -74,7 +75,7 @@ describe('order/sortSubgraph', function () {
     expect(sortSubgraph(g, 'movable', cg).vs).eqls(['x', 'z', 'a', 'b', 'c'])
   })
 
-  it('can sort a nested subgraph with a barycenter', function () {
+  it('should sort a nested subgraph with a barycenter', function () {
     g.setNodes(['a', 'b', 'c'])
     g.setParent('a', 'y')
     g.setParent('b', 'y')
@@ -88,7 +89,7 @@ describe('order/sortSubgraph', function () {
     expect(sortSubgraph(g, 'movable', cg).vs).eqls(['x', 'a', 'b', 'c', 'z'])
   })
 
-  it('can sort a nested subgraph with no in-edges', function () {
+  it('should sort a nested subgraph with no in-edges', function () {
     g.setNodes(['a', 'b', 'c'])
     g.setParent('a', 'y')
     g.setParent('b', 'y')
@@ -102,7 +103,7 @@ describe('order/sortSubgraph', function () {
     expect(sortSubgraph(g, 'movable', cg).vs).eqls(['x', 'a', 'b', 'c', 'z'])
   })
 
-  it('sorts border nodes to the extremes of the subgraph', function () {
+  it('should sort border nodes to the extremes of the subgraph', function () {
     g.setEdge(0, 'x')
     g.setEdge(1, 'y')
     g.setEdge(2, 'z')
@@ -111,7 +112,7 @@ describe('order/sortSubgraph', function () {
     expect(sortSubgraph(g, 'sg1', cg).vs).eqls(['bl', 'x', 'y', 'z', 'br'])
   })
 
-  it('assigns a barycenter to a subgraph based on previous border nodes', function () {
+  it('should assign a barycenter to a subgraph based on previous border nodes', function () {
     g.setNode('bl1', {order: 0})
     g.setNode('br1', {order: 1})
     g.setEdge('bl1', 'bl2')
