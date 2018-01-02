@@ -1,3 +1,18 @@
+# 3.0.0 (2018-01-02)
+
+Please add a description of your change here, it will be automatically prepended to the `CHANGELOG.md` file.
+* Install Bower as devDependency @ ^1.8.2
+* Uninstall `npm-install-security-check dependency`
+* Pin `ember-cli-htmlbars-inline-precompile@0.3.12`
+* Upgrade `broccoli-merge-trees` to `^2.0.0`
+* Upgrade `broccoli-funnel` to `^2.0.1`
+* Move `ciena-dagre` to dependencies and update to `^1.0.10`
+* Install `ember-frost-test@^4.0.0`
+* Remove `ember-cli-code-coverage` integration from `npm run test`
+* Remove _package-lock.json_ until Node 8 is officially supported
+* Install `ember-graphlib@^3.0.0` as a dependency
+* Remove ember-cli-mocha useLintTree configuration option
+
 # 2.3.3 (2017-08-10)
 
 * Upgrade Ember-CLI 2.12.3 inter-dependencies
