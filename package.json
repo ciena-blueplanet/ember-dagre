@@ -57,6 +57,7 @@
   "dependencies": {
     "broccoli-funnel": "^2.0.1",
     "broccoli-merge-trees": "^2.0.0",
+    "ciena-dagre": "^1.0.9",
     "ember-cli-babel": "^5.1.7",
     "ember-graphlib": "^3.0.0"
   },
