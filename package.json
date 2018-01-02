@@ -38,7 +38,7 @@
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
     "ember-frost-test": "^4.0.0",
-    "ember-graphlib": "^3.0.0",
+    "ember-graphlib": "github:ciena-blueplanet/ember-graphlib#Issue62",
     "ember-hook": "1.4.2",
     "ember-load-initializers": "^0.6.0",
     "ember-lodash-shim": "^2.0.5",
