@@ -1,5 +1,7 @@
 # 3.0.0 (2018-01-02)
 
+**Actions to take in your application or addon: uninstall `ciena-dagre` as it is now provided by this addon as a dependency**
+
 Please add a description of your change here, it will be automatically prepended to the `CHANGELOG.md` file.
 * Install Bower as devDependency @ ^1.8.2
 * Uninstall `npm-install-security-check dependency`
