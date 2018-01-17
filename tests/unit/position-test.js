@@ -4,7 +4,7 @@ import {Graph} from 'ciena-graphlib'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('position', function () {
-  var g
+  let g
 
   beforeEach(function () {
     g = new Graph({compound: true})
@@ -15,7 +15,7 @@ describe('position', function () {
       })
   })
 
-  it('respects ranksep', function () {
+  it('should respect ranksep', function () {
     g.graph().ranksep = 1000
     g.setNode('a', {width: 50, height: 100, rank: 0, order: 0})
     g.setNode('b', {width: 50, height: 80, rank: 1, order: 0})
@@ -24,7 +24,7 @@ describe('position', function () {
     expect(g.node('b').y).to.equal(100 + 1000 + 80 / 2)
   })
 
-  it('use the largest height in each rank with ranksep', function () {
+  it('should use the largest height in each rank with ranksep', function () {
     g.graph().ranksep = 1000
     g.setNode('a', {width: 50, height: 100, rank: 0, order: 0})
     g.setNode('b', {width: 50, height: 80, rank: 0, order: 1})
@@ -36,7 +36,7 @@ describe('position', function () {
     expect(g.node('c').y).to.equal(100 + 1000 + 90 / 2)
   })
 
-  it('respects nodesep', function () {
+  it('should respect nodesep', function () {
     g.graph().nodesep = 1000
     g.setNode('a', {width: 50, height: 100, rank: 0, order: 0})
     g.setNode('b', {width: 70, height: 80, rank: 0, order: 1})

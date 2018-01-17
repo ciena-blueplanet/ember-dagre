@@ -7,7 +7,7 @@ import {beforeEach, describe, it} from 'mocha'
 const {findCycles} = alg
 
 describe('acyclic', function () {
-  let ACYCLICERS = [
+  const ACYCLICERS = [
     'greedy',
     'dfs',
     'unknown-should-still-work'
@@ -26,11 +26,11 @@ describe('acyclic', function () {
       })
 
       describe('run', function () {
-        it('does not change an already acyclic graph', function () {
+        it('should not change an already acyclic graph', function () {
           g.setPath(['a', 'b', 'd'])
           g.setPath(['a', 'c', 'd'])
           acyclic.run(g)
-          let results = g.edges().map(stripLabel)
+          const results = g.edges().map(stripLabel)
           expect(results.sort(sortByProps(['v', 'w'])))
             .to.eql([
               {v: 'a', w: 'b'},
@@ -40,13 +40,13 @@ describe('acyclic', function () {
             ])
         })
 
-        it('breaks cycles in the input graph', function () {
+        it('should break cycles in the input graph', function () {
           g.setPath(['a', 'b', 'c', 'd', 'a'])
           acyclic.run(g)
           expect(findCycles(g)).to.eql([])
         })
 
-        it('creates a multi-edge where necessary', function () {
+        it('should create a multi-edge where necessary', function () {
           g.setPath(['a', 'b', 'a'])
           acyclic.run(g)
           expect(findCycles(g)).to.eql([])
@@ -60,7 +60,7 @@ describe('acyclic', function () {
       })
 
       describe('undo', function () {
-        it('does not change edges where the original graph was acyclic', function () {
+        it('should not change edges where the original graph was acyclic', function () {
           g.setEdge('a', 'b', {minlen: 2, weight: 3})
           acyclic.run(g)
           acyclic.undo(g)
@@ -68,7 +68,7 @@ describe('acyclic', function () {
           expect(g.edges()).to.have.length(1)
         })
 
-        it('can restore previosuly reversed edges', function () {
+        it('should restore previosuly reversed edges', function () {
           g.setEdge('a', 'b', {minlen: 2, weight: 3})
           g.setEdge('b', 'a', {minlen: 3, weight: 4})
           acyclic.run(g)
@@ -82,7 +82,7 @@ describe('acyclic', function () {
   })
 
   describe('greedy-specific functionality', function () {
-    it('prefers to break cycles at low-weight edges', function () {
+    it('should prefer to break cycles at low-weight edges', function () {
       g.setGraph({acyclicer: 'greedy'})
       g.setDefaultEdgeLabel(function () { return {minlen: 1, weight: 2} })
       g.setPath(['a', 'b', 'c', 'd', 'a'])

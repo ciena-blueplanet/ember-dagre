@@ -4,11 +4,11 @@ import {Graph} from 'ciena-graphlib'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('rank', function () {
-  var RANKERS = [
+  const RANKERS = [
     'longest-path', 'tight-tree',
     'network-simplex', 'unknown-should-still-work'
   ]
-  var g
+  let g
 
   beforeEach(function () {
     g = new Graph()
@@ -22,18 +22,18 @@ describe('rank', function () {
 
   RANKERS.forEach(ranker => {
     describe(ranker, function () {
-      it('respects the minlen attribute', function () {
+      it('should respect the minlen attribute', function () {
         g.graph().ranker = ranker
         rank(g)
         g.edges().forEach(e => {
-          var vRank = g.node(e.v).rank
-          var wRank = g.node(e.w).rank
+          const vRank = g.node(e.v).rank
+          const wRank = g.node(e.w).rank
           expect(wRank - vRank).to.be.gte(g.edge(e).minlen)
         })
       })
 
-      it('can rank a single node graph', function () {
-        var g = new Graph().setGraph({}).setNode('a', {})
+      it('should rank a single node graph', function () {
+        let g = new Graph().setGraph({}).setNode('a', {})
         rank(g, ranker)
         expect(g.node('a').rank).to.equal(0)
       })

@@ -6,14 +6,14 @@ import {Graph} from 'ciena-graphlib'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('order', function () {
-  var g
+  let g
 
   beforeEach(function () {
     g = new Graph()
       .setDefaultEdgeLabel({weight: 1})
   })
 
-  it('does not add crossings to a tree structure', function () {
+  it('should not add crossings to a tree structure', function () {
     g.setNode('a', {rank: 1})
     ;['b', 'e'].forEach(v => g.setNode(v, {rank: 2}))
     ;['c', 'd', 'f'].forEach(v => g.setNode(v, {rank: 3}))
@@ -21,27 +21,27 @@ describe('order', function () {
     g.setEdge('b', 'd')
     g.setPath(['a', 'e', 'f'])
     order(g)
-    var layering = buildLayerMatrix(g)
+    const layering = buildLayerMatrix(g)
     expect(crossCount(g, layering)).to.equal(0)
   })
 
-  it('can solve a simple graph', function () {
+  it('should solve a simple graph', function () {
     // This graph resulted in a single crossing for previous versions of dagre.
     ;['a', 'd'].forEach(v => g.setNode(v, {rank: 1}))
     ;['b', 'f', 'e'].forEach(v => g.setNode(v, {rank: 2}))
     ;['c', 'g'].forEach(v => g.setNode(v, {rank: 3}))
     order(g)
-    var layering = buildLayerMatrix(g)
+    const layering = buildLayerMatrix(g)
     expect(crossCount(g, layering)).to.equal(0)
   })
 
-  it('can minimize crossings', function () {
+  it('should minimize crossings', function () {
     g.setNode('a', {rank: 1})
     ;['b', 'e', 'g'].forEach(v => g.setNode(v, {rank: 2}))
     ;['c', 'f', 'h'].forEach(v => g.setNode(v, {rank: 3}))
     g.setNode('d', {rank: 4})
     order(g)
-    var layering = buildLayerMatrix(g)
+    const layering = buildLayerMatrix(g)
     expect(crossCount(g, layering)).to.be.lte(1)
   })
 })

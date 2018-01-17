@@ -1,6 +1,6 @@
 {
   "name": "ember-dagre",
-  "version": "2.3.3",
+  "version": "4.0.0",
   "description": "The default blueprint for ember-cli addons.",
   "directories": {
     "doc": "doc",
@@ -11,7 +11,7 @@
     "lint": "lint-all-the-things",
     "start": "ember server",
     "test": "npm run lint && npm run test-addon",
-    "test-addon": "EMBER_TRY_SCENARIO=${EMBER_TRY_SCENARIO:=ember-default} && ember try:one $EMBER_TRY_SCENARIO --- COVERAGE=true ember test"
+    "test-addon": "EMBER_TRY_SCENARIO=${EMBER_TRY_SCENARIO:=ember-default} && ember try:one $EMBER_TRY_SCENARIO --- ember test"
   },
   "repository": {
     "type": "git",
@@ -23,26 +23,30 @@
   "author": "Matthew Dahl (https://github.com/sandersky)",
   "license": "MIT",
   "devDependencies": {
+    "bower": "^1.8.2",
     "broccoli-asset-rev": "^2.4.5",
-    "ciena-dagre": "^1.0.9",
-    "ciena-graphlib": "^1.0.8",
+    "chai-jquery": "^2.0.0",
     "ember-cli": "2.12.3",
-    "ember-cli-chai": "^0.3.2",
+    "ember-cli-chai": "0.4.3",
     "ember-cli-dependency-checker": "^1.3.0",
     "ember-cli-htmlbars": "^1.1.1",
-    "ember-cli-htmlbars-inline-precompile": "^0.3.6",
+    "ember-cli-htmlbars-inline-precompile": "0.3.12",
     "ember-cli-inject-live-reload": "^1.4.1",
-    "ember-cli-mocha": "0.13.2",
+    "ember-cli-mocha": "0.14.4",
     "ember-cli-shims": "^1.0.2",
     "ember-cli-uglify": "^1.2.0",
     "ember-disable-prototype-extensions": "^1.1.0",
     "ember-export-application-global": "^1.0.5",
-    "ember-graphlib": "^2.2.3",
+    "ember-frost-test": "^4.0.0",
+    "ember-graphlib": "^3.0.0",
+    "ember-hook": "1.4.2",
     "ember-load-initializers": "^0.6.0",
     "ember-resolver": "^2.0.3",
+    "ember-sinon": "^0.7.0",
     "ember-source": "~2.12.0",
-    "ember-test-utils": "^1.11.0",
-    "loader.js": "^4.2.3"
+    "ember-test-utils": "^8.0.0",
+    "loader.js": "^4.2.3",
+    "sinon-chai": "^2.14.0"
   },
   "keywords": [
     "directed",
@@ -51,10 +55,10 @@
     "renderer"
   ],
   "dependencies": {
-    "broccoli-funnel": "^1.0.6",
-    "broccoli-merge-trees": "^1.1.4",
-    "ember-cli-babel": "^5.1.7",
-    "npm-install-security-check": "^1.0.2"
+    "broccoli-funnel": "^2.0.1",
+    "broccoli-merge-trees": "^2.0.0",
+    "ciena-dagre": "^1.0.9",
+    "ember-cli-babel": "^5.1.7"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
