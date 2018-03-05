@@ -41,6 +41,7 @@
     "ember-graphlib": "^3.0.0",
     "ember-hook": "1.4.2",
     "ember-load-initializers": "^0.6.0",
+    "ember-lodash-shim": "^2.0.5",
     "ember-resolver": "^2.0.3",
     "ember-sinon": "^0.7.0",
     "ember-source": "~2.12.0",

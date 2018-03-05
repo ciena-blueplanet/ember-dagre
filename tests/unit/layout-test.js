@@ -67,8 +67,8 @@ describe('layout', function () {
     ['TB', 'BT', 'LR', 'RL'].forEach(rankdir => {
       it(rankdir, function () {
         g.graph().nodesep = g.graph().edgesep = 10
-        g.graph().rankdir = rankdir;
-        ['a', 'b', 'c', 'd'].forEach(v => {
+        g.graph().rankdir = rankdir
+        ;['a', 'b', 'c', 'd'].forEach(v => {
           g.setNode(v, {width: 10, height: 10})
         })
         g.setEdge('a', 'c', {width: 2000, height: 10, labelpos: 'c'})
@@ -173,7 +173,6 @@ describe('layout', function () {
     ])
   })
 
-  // FIXME: get tests passing
   describe('can layout a self loop', function () {
     ['TB', 'BT', 'LR', 'RL'].forEach(rankdir => {
       it('in rankdir = ' + rankdir, function () {
@@ -205,7 +204,7 @@ describe('layout', function () {
     layout(g)
   })
 
-  it('minimizes the height of subgraphs', function () {
+  it('should minimize the height of subgraphs', function () {
     ['a', 'b', 'c', 'd', 'x', 'y'].forEach(v => {
       g.setNode(v, {width: 50, height: 50})
     })

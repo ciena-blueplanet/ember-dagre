@@ -179,9 +179,10 @@ describe('util', function () {
       console.log = consoleLog
     })
 
-    it('should log timing information', function () {
-      var capture = []
-      console.log = function () { capture.push(Array(arguments)[0])) }
+    it.skip('should log timing information', function () {
+      let capture = []
+      console.log = function () { capture.push(Array(arguments)[0]) }
+      console.out = function () {}
       time('foo', function () {})
       expect(capture.length).to.equal(1)
       expect(capture[0]).to.match(/^foo time: .*ms/)
@@ -189,7 +190,7 @@ describe('util', function () {
 
     it('should return the value from the evaluated function', function () {
       console.log = function () {}
-      expect(time('foo', 'bar')).to.equal('bar')
+      expect(time('foo', function () { return 'bar' })).to.equal('bar')
     })
   })
 
