@@ -14,7 +14,6 @@ const {
 import {longestPath} from 'ciena-dagre/rank/util'
 import {normalizeRanks} from 'ciena-dagre/util'
 import {Graph} from 'ciena-graphlib'
-import _ from 'lodash'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('network simplex', function () {
@@ -231,8 +230,8 @@ describe('network simplex', function () {
       const d = g.node('d')
       const e = g.node('e')
 
-      expect(_.sortBy(_.map(g.nodes(), function (v) { return g.node(v).lim })))
-        .to.eql(_.range(1, 6))
+      expect(g.nodes().map(v => g.node(v).lim).sort())
+        .to.eql(Array.from(Array(6).keys()).slice(1))
 
       expect(a).to.eql({low: 1, lim: 5})
 
@@ -271,8 +270,8 @@ describe('network simplex', function () {
       expect(t.edge('g', 'f').cutvalue).to.equal(0)
 
       // ensure lim numbers look right
-      const lims = _.sortBy(_.map(t.nodes(), function (v) { return t.node(v).lim }))
-      expect(lims).to.eql(_.range(1, 9))
+      const lims = t.nodes().map(v => t.node(v).lim).sort()
+      expect(lims).to.eql(Array.from(Array(9).keys()).slice(1))
     })
 
     it('should update ranks', function () {

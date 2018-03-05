@@ -2,7 +2,7 @@ import {expect} from 'chai'
 import greedyFAS from 'ciena-dagre/greedy-fas'
 import {Graph, alg} from 'ciena-graphlib'
 const {findCycles} = alg
-import _ from 'lodash'
+import {sortByProps} from 'dummy/tests/helpers/array-helpers'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('greedyFAS', function () {
@@ -83,7 +83,7 @@ describe('greedyFAS', function () {
     g.setEdge('a', 'b', 5, 'foo')
     g.setEdge('b', 'a', 2, 'bar')
     g.setEdge('b', 'a', 2, 'baz')
-    expect(_.sortBy(greedyFAS(g, weightFn(g)), 'name')).to.eql([
+    expect(greedyFAS(g, weightFn(g)).sort(sortByProps(['name']))).to.eql([
       {v: 'b', w: 'a', name: 'bar'},
       {v: 'b', w: 'a', name: 'baz'}
     ])
@@ -93,7 +93,7 @@ describe('greedyFAS', function () {
 function checkFAS (g, fas) {
   const n = g.nodeCount()
   const m = g.edgeCount()
-  _.forEach(fas, function (edge) {
+  fas.forEach(edge => {
     g.removeEdge(edge.v, edge.w)
   })
   expect(findCycles(g)).to.eql([])

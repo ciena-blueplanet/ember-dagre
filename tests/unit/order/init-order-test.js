@@ -1,7 +1,6 @@
 import {expect} from 'chai'
 import initOrder from 'ciena-dagre/order/init-order'
 import {Graph} from 'ciena-graphlib'
-import _ from 'lodash'
 import {beforeEach, describe, it} from 'mocha'
 
 describe('order/initOrder', function () {
@@ -13,30 +12,28 @@ describe('order/initOrder', function () {
   })
 
   it('should assign non-overlapping orders for each rank in a tree', function () {
-    _.forEach({a: 0, b: 1, c: 2, d: 2, e: 1}, function (rank, v) {
-      g.setNode(v, {rank: rank})
-    })
+    Object.entries({a: 0, b: 1, c: 2, d: 2, e: 1})
+      .forEach(([v, rank]) => g.setNode(v, {rank}))
     g.setPath(['a', 'b', 'c'])
     g.setEdge('b', 'd')
     g.setEdge('a', 'e')
 
     const layering = initOrder(g)
     expect(layering[0]).to.eql(['a'])
-    expect(_.sortBy(layering[1])).to.eql(['b', 'e'])
-    expect(_.sortBy(layering[2])).to.eql(['c', 'd'])
+    expect(layering[1].sort()).to.eql(['b', 'e'])
+    expect(layering[2].sort()).to.eql(['c', 'd'])
   })
 
   it('should assign non-overlapping orders for each rank in a DAG', function () {
-    _.forEach({a: 0, b: 1, c: 1, d: 2}, function (rank, v) {
-      g.setNode(v, {rank: rank})
-    })
+    Object.entries({a: 0, b: 1, c: 1, d: 2})
+      .forEach(([v, rank]) => g.setNode(v, {rank}))
     g.setPath(['a', 'b', 'd'])
     g.setPath(['a', 'c', 'd'])
 
     const layering = initOrder(g)
     expect(layering[0]).to.eql(['a'])
-    expect(_.sortBy(layering[1])).to.eql(['b', 'c'])
-    expect(_.sortBy(layering[2])).to.eql(['d'])
+    expect(layering[1].sort()).to.eql(['b', 'c'])
+    expect(layering[2].sort()).to.eql(['d'])
   })
 
   it('should not assign an order to subgraph nodes', function () {

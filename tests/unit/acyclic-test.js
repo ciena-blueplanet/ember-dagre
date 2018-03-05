@@ -1,9 +1,10 @@
 import {expect} from 'chai'
 import acyclic from 'ciena-dagre/acyclic'
 import {Graph, alg} from 'ciena-graphlib'
-const {findCycles} = alg
-import _ from 'lodash'
+import {sortByProps} from 'dummy/tests/helpers/array-helpers'
 import {beforeEach, describe, it} from 'mocha'
+
+const {findCycles} = alg
 
 describe('acyclic', function () {
   const ACYCLICERS = [
@@ -18,7 +19,7 @@ describe('acyclic', function () {
       .setDefaultEdgeLabel(function () { return {minlen: 1, weight: 1} })
   })
 
-  _.forEach(ACYCLICERS, function (acyclicer) {
+  ACYCLICERS.forEach(function (acyclicer) {
     describe(acyclicer, function () {
       beforeEach(function () {
         g.setGraph({acyclicer: acyclicer})
@@ -29,13 +30,14 @@ describe('acyclic', function () {
           g.setPath(['a', 'b', 'd'])
           g.setPath(['a', 'c', 'd'])
           acyclic.run(g)
-          const results = _.map(g.edges(), stripLabel)
-          expect(_.sortBy(results, ['v', 'w'])).to.eql([
-            {v: 'a', w: 'b'},
-            {v: 'a', w: 'c'},
-            {v: 'b', w: 'd'},
-            {v: 'c', w: 'd'}
-          ])
+          const results = g.edges().map(stripLabel)
+          expect(results.sort(sortByProps(['v', 'w'])))
+            .to.eql([
+              {v: 'a', w: 'b'},
+              {v: 'a', w: 'c'},
+              {v: 'b', w: 'd'},
+              {v: 'c', w: 'd'}
+            ])
         })
 
         it('should break cycles in the input graph', function () {
@@ -93,7 +95,7 @@ describe('acyclic', function () {
 })
 
 function stripLabel (edge) {
-  let c = _.clone(edge)
+  let c = Object.assign({}, edge)
   delete c.label
   return c
 }
