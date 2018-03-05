@@ -1,3 +1,8 @@
+# 4.0.1 (2018-03-05)
+
+* refactored tests to remove lodash 
+
+
 # 4.0.0 (2018-01-03)
 
 Please add a description of your change here, it will be automatically prepended to the `CHANGELOG.md` file.
