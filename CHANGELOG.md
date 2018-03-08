@@ -1,3 +1,7 @@
+# 4.0.3 (2018-03-08)
+* **Removed** extra `after_deploy` hook that is not used
+
+
 # 4.0.2 (2018-03-08)
 * **Updated** pull request template
 * **Added** issue template
