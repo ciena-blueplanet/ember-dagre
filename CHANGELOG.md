@@ -1,3 +1,8 @@
+# 4.0.4 (2018-07-20)
+
+* **Fixed** Travis API key.
+
+
 # 4.0.3 (2018-03-08)
 * **Removed** extra `after_deploy` hook that is not used
 
