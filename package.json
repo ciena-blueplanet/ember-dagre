@@ -23,6 +23,7 @@
   "author": "Matthew Dahl (https://github.com/sandersky)",
   "license": "MIT",
   "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "bower": "^1.8.2",
     "broccoli-asset-rev": "^2.4.5",
     "chai-jquery": "^2.0.0",
